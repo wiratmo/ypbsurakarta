@@ -1,0 +1,121 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'bower' ]
+2 info using npm@4.1.1
+3 info using node@v7.4.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData bower
+8 silly fetchNamedPackageData bower
+9 silly mapToRegistry name bower
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'bower',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'bower',
+12 silly mapToRegistry   name: 'bower',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/bower
+14 verbose request uri https://registry.npmjs.org/bower
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 6:52:35 PM
+17 verbose request id 5c1d9925164a6269
+18 verbose etag W/"5879c880-2ad27"
+19 verbose lastModified Sat, 14 Jan 2017 06:43:12 GMT
+20 http request GET https://registry.npmjs.org/bower
+21 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+22 info attempt registry request try #2 at 6:52:45 PM
+23 verbose etag W/"5879c880-2ad27"
+24 verbose lastModified Sat, 14 Jan 2017 06:43:12 GMT
+25 http request GET https://registry.npmjs.org/bower
+26 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+27 info attempt registry request try #3 at 6:53:45 PM
+28 verbose etag W/"5879c880-2ad27"
+29 verbose lastModified Sat, 14 Jan 2017 06:43:12 GMT
+30 http request GET https://registry.npmjs.org/bower
+31 silly get cb [ 304, undefined ]
+32 verbose etag https://registry.npmjs.org/bower from cache
+33 verbose get saving bower to /home/safire/.npm/registry.npmjs.org/bower/.cache.json
+34 verbose correctMkdir /home/safire/.npm correctMkdir not in flight; initializing
+35 silly install normalizeTree
+36 silly loadCurrentTree Finishing
+37 silly loadIdealTree Starting
+38 silly install loadIdealTree
+39 silly cloneCurrentTree Starting
+40 silly install cloneCurrentTreeToIdealTree
+41 silly cloneCurrentTree Finishing
+42 silly loadShrinkwrap Starting
+43 silly install loadShrinkwrap
+44 silly loadShrinkwrap Finishing
+45 silly loadAllDepsIntoIdealTree Starting
+46 silly install loadAllDepsIntoIdealTree
+47 silly resolveWithNewModule bower@1.8.0 checking installable status
+48 silly cache add args [ 'bower', null ]
+49 verbose cache add spec bower
+50 silly cache add parsed spec Result {
+50 silly cache add   raw: 'bower',
+50 silly cache add   scope: null,
+50 silly cache add   escapedName: 'bower',
+50 silly cache add   name: 'bower',
+50 silly cache add   rawSpec: '',
+50 silly cache add   spec: 'latest',
+50 silly cache add   type: 'tag' }
+51 silly addNamed bower@latest
+52 verbose addNamed "latest" is being treated as a dist-tag for bower
+53 info addNameTag [ 'bower', 'latest' ]
+54 silly mapToRegistry name bower
+55 silly mapToRegistry using default registry
+56 silly mapToRegistry registry https://registry.npmjs.org/
+57 silly mapToRegistry data Result {
+57 silly mapToRegistry   raw: 'bower',
+57 silly mapToRegistry   scope: null,
+57 silly mapToRegistry   escapedName: 'bower',
+57 silly mapToRegistry   name: 'bower',
+57 silly mapToRegistry   rawSpec: '',
+57 silly mapToRegistry   spec: 'latest',
+57 silly mapToRegistry   type: 'tag' }
+58 silly mapToRegistry uri https://registry.npmjs.org/bower
+59 verbose addNameTag registry:https://registry.npmjs.org/bower not in flight; fetching
+60 verbose get https://registry.npmjs.org/bower not expired, no request
+61 silly addNameTag next cb for bower with tag latest
+62 silly addNamed bower@1.8.0
+63 verbose addNamed "1.8.0" is a plain semver version for bower
+64 silly cache afterAdd bower@1.8.0
+65 verbose afterAdd /home/safire/.npm/bower/1.8.0/package/package.json not in flight; writing
+66 verbose correctMkdir /home/safire/.npm correctMkdir not in flight; initializing
+67 verbose afterAdd /home/safire/.npm/bower/1.8.0/package/package.json written
+68 silly loadAllDepsIntoIdealTree Finishing
+69 silly loadIdealTree Finishing
+70 silly currentTree lib
+70 silly currentTree └── bower@1.8.0
+71 silly idealTree lib
+71 silly idealTree └── bower@1.8.0
+72 silly generateActionsToTake Starting
+73 silly install generateActionsToTake
+74 warn checkPermissions Missing write access to /usr/lib/node_modules/bower
+75 warn checkPermissions Missing write access to /usr/lib/node_modules
+76 silly rollbackFailedOptional Starting
+77 silly rollbackFailedOptional Finishing
+78 silly runTopLevelLifecycles Finishing
+79 silly install printInstalled
+80 verbose stack Error: EACCES: permission denied, access '/usr/lib/node_modules/bower'
+81 verbose cwd /home/safire/Code/Vacations/ypb/public
+82 error Linux 4.8.13-1-ARCH
+83 error argv "/usr/bin/node" "/usr/bin/npm" "install" "-g" "bower"
+84 error node v7.4.0
+85 error npm  v4.1.1
+86 error path /usr/lib/node_modules/bower
+87 error code EACCES
+88 error errno -13
+89 error syscall access
+90 error Error: EACCES: permission denied, access '/usr/lib/node_modules/bower'
+90 error  { Error: EACCES: permission denied, access '/usr/lib/node_modules/bower'
+90 error   errno: -13,
+90 error   code: 'EACCES',
+90 error   syscall: 'access',
+90 error   path: '/usr/lib/node_modules/bower' }
+91 error Please try running this command again as root/Administrator.
+92 verbose exit [ -13, true ]
