@@ -9,10 +9,10 @@
 	  		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	  			<strong>Warning!</strong>  {{Session::get('warning')}}
 		</div>
-	@elseif(Session::has('denger'))
-		<div class="alert alert-denger alert-dismissible" role="alert">
+	@elseif(Session::has('danger'))
+		<div class="alert alert-danger alert-dismissible" role="alert">
 	  		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  			<strong>Denger!</strong>  {{Session::get('denger')}}
+	  			<strong>Denger!</strong>  {{Session::get('danger')}}
 		</div>
 	@elseif(Session::has('info'))
 		<div class="alert alert-info alert-dismissible" role="alert">

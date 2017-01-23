@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('keyword')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug');
             $table->mediumText('description')->nullable();
             $table->softDeletes();
@@ -26,7 +26,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('keyword')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug');
             $table->mediumText('description')->nullable();
             $table->softDeletes();
@@ -35,13 +35,12 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->Integer('user_id')->unsigned();
             $table->string('keyword')->nullable();
-            $table->string('title');
-            $table->string('slug')->unique();
             $table->mediumText('description')->nullable();
-            $table->text('content');
+            $table->string('title')->unique();
+            $table->string('slug');
+            $table->longText('content');
             $table->integer('view')->nullable();
-            $table->enum('draf',['1','0'])->default('0');
-            $table->enum('status',['1','0'])->default('0');
+            $table->enum('status',['1','0'])->default('1');
             $table->softDeletes();
             $table->timestamps();
 

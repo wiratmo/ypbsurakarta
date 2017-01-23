@@ -16,11 +16,9 @@
         <div class="tab-content">
           
             <div id="picture" class="tab-pane fade in active">
+              <input type="hidden" name="category" value="{{$category}}">
               <div class="form-group">
                 <input type="text" name="name" class="form-control"  id="name" placeholder="Picture Name">
-              </div>
-              <div class="form-group">
-                <input type="text" name="category" class="form-control"  id="category" placeholder="Category of picture">
               </div>
               <div class="form-group">
                 <input type="text" name="url_picture" class="form-control"  id="url_picture" placeholder="Category of picture">

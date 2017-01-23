@@ -8,9 +8,15 @@ use App\Model\Tag;
 use App\Model\UserProfile;
 use App\User;
 use App\Model\Comment;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+    
     public function categories(){
     	return $this->belongsToMany(Category::class);
     }

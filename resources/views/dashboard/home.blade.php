@@ -59,10 +59,11 @@
         </div>
     </div>
     @foreach($fondation as $f)
-    <section id="yayasan" style="background: url('{{url('storage/image/'.$f->founder_image)}}'); background-size: cover;">
-        <div class="container">
+    <section id="yayasan">
+        <div class="container" style="background: url('{{url('storage/image/logo/'.$f->founder_image)}}'); background-size: cover;">
             <div class="moto">
-                {{$f->motto}}
+                Moto
+                {!! $f->motto !!}
             </div>
         </div>
     </section>
@@ -72,12 +73,12 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="visi">
-                        <h3>Visi</h3>
-                        {{$f->visions}}
+                        <h1>Visi</h1>
+                        <h2>{!! $f->visions !!}</h2>
                     </div>
                     <div class="misi">
-                        <h3>Misi</h3>
-                        {{$f->missions}}
+                        <h1>Misi</h1>
+                        <h2>{!! $f->missions !!}</h2>
                     </div>
                 </div>
             </div> 
@@ -96,7 +97,7 @@
                                 <a href="{{$s->website}}">
                                     <div class="skh">
                                         <div class="col-md-3 col-xs-3">
-                                            <img src="{{url('storage/image/'.$s->logo)}}" class="img img-responsive" alt="{{$s->description}}">
+                                            <img src="{{url('storage/image/logo/'.$s->logo)}}" class="img img-responsive" alt="{{$s->description}}">
                                         </div>
                                         <div class="col-md-9 col-xs-9">
                                             <h4 class="nskh">{{$s->name}}</h4>
@@ -126,19 +127,21 @@
                                 <div class="col-xs-12">
                                     <h4>{{$ma->title}}</h4>
                                     <div class="tgl"><i class="fa fa-clock-o"></i>{{$ma->created_at}}</div>
-                                <p>{{$ma->content}}<a href="{{url($ma->slug)}}">Baca Selengkapnya</a></p>
+                                <p>{{$ma->description}}<a href="{{url($ma->slug)}}">Baca Selengkapnya</a></p>
                                 </div>
                             </div>
                             @endforeach
+                            <a href="{{url('/blog')}}"><h4>Lihat Berita Keseluruhan</h4></a>
                         </div>
                         <div class="col-md-6 foto">
                             <div class="row">
                                 @foreach($picture as $p)
                                     <div class="col-md-6 col-xs-6 galeri">
-                                        <img src="{{url('storage/image'.$p->location)}}" class="img img-responsive" alt="{{$p->description}}">
+                                        <img src="{{url('storage/image/'.$p->location)}}" class="img img-responsive" alt="{{$p->description}}">
                                     </div>
                                 @endforeach
                             </div>
+                            <a href="{{url('/picture')}}"><h4>Lihat Gambar Keseluruhan</h4></a>
                         </div>
                     </div>
                 </div>

@@ -22,10 +22,10 @@ class CreateSchoolsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('picture')->nullable();
             $table->string('website')->nullable();
-            $table->string('address')->nullable();
-            $table->text('visions')->nullable();
-            $table->text('missions')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('address')->nullable();
+            $table->longText('visions')->nullable();
+            $table->longText('missions')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

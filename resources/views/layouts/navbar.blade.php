@@ -1,7 +1,7 @@
     <div class="navtop">
         <div class="left-navtop">
             <span class="navtop-brand">'
-                <img src="{{url('storage/image/logo/logo.png')}}" width="250px">
+                <img src="{{url('storage/image/logo/logo.png')}}">
             </span>
         </div>
         <div class="right-navtop" >
@@ -34,16 +34,16 @@
                 <div class="collapse navbar-collapse right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="page-scroll" href="#home">HOME</a>
+                            <a class="page-scroll" href="/#home">HOME</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#yayasan">YAYASAN</a>
+                            <a class="page-scroll" href="/#yayasan">YAYASAN</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#layanan">LAYANAN YAYASAN</a>
+                            <a class="page-scroll" href="/#layanan">LAYANAN YAYASAN</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#berita-galeri">BERITA DAN GALERI</a>
+                            <a class="page-scroll" href="/#berita-galeri">BERITA DAN GALERI</a>
                         </li>
                     </ul>
                 </div>

@@ -122,7 +122,7 @@ p {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: black;
+    color: white;
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
@@ -135,9 +135,11 @@ p {
   }
   .navbar-default.affix .navbar-header .navbar-brand {
     color: #222222;
-    background: url("../img/logo.png");
-    width: 139px;
+    background: url("../storage/image/logo/logo.png");
+    width: 172px;
     background-size: cover;
+    margin-top: 10px;
+    margin-bottom: 6px;
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
@@ -462,10 +464,12 @@ body {
 .navtop{
   display: none;
   top: 0;
+  background: rgba(0, 146, 63, 0.86);
 }
 
 .sosmed {
   margin-right: 8px;
+  color: white;
 }
 #hitam{
   color: black;
@@ -646,6 +650,7 @@ Thanks :)*/
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.09);
   margin: 5px 5px;
+  background: white;
 }
 .bagian:hover{
   display: flex;
@@ -654,12 +659,13 @@ Thanks :)*/
   margin: 5px 5px;
 }
 .new-news{
-padding: 9px;
-    min-height: 468px;
-    margin-top: 30px;
-    border: 1px solid;
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
-    border: 1px solid rgba(0,0,0,.09);
+  padding: 9px;
+  min-height: 468px;
+  margin-top: 30px;
+  border: 1px solid;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  background: white;
 }
 
 #label {
@@ -721,14 +727,13 @@ padding: 9px;
 .moto{
     color: white;
     z-index: 10;
-    width: 400px;
+    width: 100%;
     float: right;
     font-size: 20px;
     top: 9px;
     margin-top: 500px;
 }
-.visi,
-.misi {
+.visi {
   text-align: center;
 }
 #visi-misi{
@@ -764,4 +769,11 @@ padding: 9px;
     border: 1px solid;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
     border: 1px solid rgba(0,0,0,.09);
+}
+
+.putih{
+  color: white;
+}
+.btn-tag{
+  margin: 5px 0;
 }

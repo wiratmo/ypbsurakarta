@@ -15,13 +15,11 @@
 
     <!-- include summernote css/js-->
 
-    <script src="/js/all.js"></script> 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
-    <link href="/css/all.css" rel="stylesheet">
-    <link href="/css/dataTables.css" rel="stylesheet">
-    <link href="/css/admin.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link href="/css/style.css" rel="stylesheet">
+
 
     @stack('style')
     
@@ -33,3 +31,5 @@
 @yield('content')
 @include('layouts.admin.footer')
 @stack('scripts')
+
+</html>

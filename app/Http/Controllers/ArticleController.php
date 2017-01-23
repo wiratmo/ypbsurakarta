@@ -17,7 +17,11 @@ class ArticleController extends Controller
     public function index($slug){
     	$data['articles'] = Article::with(['categories','tags','user','comment'])->whereSlug($slug)->get();
         $data['profile'] = Article::profile($slug);
+        $article = Article::find($data['articles'][0]->id);
+        $article->view = ($article->view) +1;
+        $article->save();
         return view('dashboard.detail', $data);
+        return dd($article);
         return dd($data);
     }
 
@@ -52,6 +56,8 @@ class ArticleController extends Controller
         $article->description = $request->description;
         $article->content = $request->content;
         $article->save();
+        $article->tags()->sync($request->tag);
+        $article->categories()->sync($request->category);
         
         $request->session()->flash('success', 'anda telah menambahkan artikel baru terimakasih');
         return redirect('/contributor/article');
@@ -65,9 +71,11 @@ class ArticleController extends Controller
         return $data;
     }
 
-    Public function updateContributor(Request $request){
+    Public function update(Request $request){
         $article = Article::find($request->id);
         $article->user_id = Auth::user()->id;
+        $article->tags()->sync($request->tag);
+        $article->categories()->sync($request->category);
         $article->keyword = $request->keyword;
         $article->title = $request->title;
         $article->slug = str_slug($request->title);
@@ -76,7 +84,11 @@ class ArticleController extends Controller
         $article->save();
 
         $request->session()->flash('success', 'anda telah merubah artikel terimakasih');
-        return redirect('/contributor/article');
+        if(Auth::user()->role === 1){
+            return redirect('/contributor/article');
+        } else if(Auth::user()->role === 2){
+            return redirect('/admin/article');
+        }
         return dd($request->all());
     }
 
@@ -86,18 +98,21 @@ class ArticleController extends Controller
     */
     public function indexAdmin(){
         $data['articles'] = Article::with(['categories','tags','user','comment'])->get();
+        return view('admin.article', $data);
     	return dd($data);
     }
 
     public function editAdmin($id){
+        $data['id'] = $id;
         $data['articles'] = Article::with(['categories','tags','user','comment'])->whereId($id)->get();
-        return dd($data);
+        return view('admin.article_edit', $data);
+        return $data;
     }
-
-    Public function updateAdmin(Request $request){
-        return dd($request->all());
-    }
+    
     public function delete(Request $request){
-        return "delete";
+        $article = Article::find($request->id);
+        $article->delete();
+        $request->session()->flash('danger', 'data artikel telah dihapus');
+        return redirect('admin/article');
     }
 }

@@ -15,7 +15,7 @@ class TagController extends Controller
     								->join('article_tag','article_tag.article_id','articles.id')
     								->join('tags','tags.id','article_tag.tag_id')
     								->where('tags.slug',$tag)
-    								->get();
+    								->paginate(5);
         $data['category'] = Category::all();
         return view('dashboard.article', $data);
     	return dd($data);
@@ -23,11 +23,17 @@ class TagController extends Controller
 
     public function indexTag(){
     	$data['tags'] = Tag::all();
+        return view ('admin.tag', $data);
     	return dd($data);
     }
 
+    public function datajson(){
+        $data['tags'] = Tag::Select('id', 'name as text')->get();
+        return response()->json($data['tags']);
+    }
+
     public function create(){
-    	return "create";
+    	return view('admin.tag_create');
     }
 
     public function store (Request $request){
@@ -35,15 +41,20 @@ class TagController extends Controller
     }
 
     public function edit ($id){
+        $data['id'] = $id;
     	$data['tags'] = Tag::Where('id',$id)->get();
+        return view('admin.tag_edit', $data);
     	return dd($data);
     }
 
     public function update(Request $request){
-    	return dd($request->all());
+        
     }
 
     public function delete(Request $request){
-    	return dd($request->all());
+    	$tag = Tag::find($request->id);
+        $tag->delete();
+        $request->session()->flash('success', 'Tag telag dihapus');
+        return redirect('admin/tag');
     }
 }

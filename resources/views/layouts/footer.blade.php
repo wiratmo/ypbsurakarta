@@ -28,5 +28,3 @@
     <!-- Theme JavaScript -->
     <script src="/js/new-age.min.js"></script>
 
-
-</html>

@@ -16,9 +16,11 @@ class Contributor
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role == 1){
-            return $next($request);
-        }
-        return rediretct('/');
+        if(Auth::check()){
+            if(Auth::user()->role == 1){
+                return $next($request);
+            }
+            return redirect('/');
+        }   return redirect('/');
     }
 }

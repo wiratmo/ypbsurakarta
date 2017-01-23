@@ -3,7 +3,11 @@
 
 <center>
 	<h2>Halaman User Contributor <small>Manage Picture</small></h2>
-	<a href="{{url('/contributor/picture/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
+	@if(Auth::user()->role === 1)
+		<a href="{{url('/contributor/picture/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
+	@elseif($category === 2)
+		<a href="{{url('/admin/slider/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
+	@endif
 	<hr>
 </center>
 <div class="row">
@@ -14,7 +18,17 @@
 			<hr>
 			<img src="{{url('storage/image/'.$p->location)}}" class="img img-responsive">
 			<center class="space">
-				<a href="{{url('/contributor/picture/'.$p->id)}}"><button class="btn btn-sm btn-primary"> ubah </button></a> <button class="btn btn-sm btn-danger"> hapus </button>
+					@if(Auth::user()->role === 1)
+				<a href="{{url('/contributor/picture/'.$p->id)}}"><button class="btn btn-sm btn-primary"> ubah </button></a> 
+		        	@elseif(Auth::user()->role === 2)
+				<a href="{{url('/admin/picture/'.$p->id)}}"><button class="btn btn-sm btn-primary"> ubah </button></a> 
+				<form action="{{url('admin/picture/delete')}}" method="POST">
+					{{ method_field('DELETE') }}
+	        				{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{$p->id}}">
+					<input type="submit" class="btn btn-sm btn-danger" value="hapus">
+				</form>
+					@endif
 			</center>
 		</div>
 	</div>

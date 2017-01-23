@@ -61,6 +61,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'logo' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/image/logo'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

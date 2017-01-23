@@ -6,10 +6,15 @@
 	<hr>
 </center>
 <div class="row">
-	<form method="post" action="{{url('contributor/picture/'.$id)}}" enctype="multipart/form-data">
+  @if(Auth::user()->role === 1)
+     <form method="post" action="{{url('contributor/picture/'.$id)}}" enctype="multipart/form-data">
+    @elseif(Auth::user()->role === 2)
+	   <form method="post" action="{{url('admin/picture/'.$id)}}" enctype="multipart/form-data">
+  @endif
           {{ csrf_field() }}
       @foreach($pictures as $p)
         <input type="hidden" name="id" value="{{$p->id}}">
+        <input type="hidden" name="category" value="{{$p->category}}">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#picture">Content</a></li>
           <li><a data-toggle="tab" href="#meta">Meta</a></li>
@@ -21,7 +26,7 @@
                 <input type="text" name="name" class="form-control"  id="name" placeholder="Picture Name" value="{{$p->name}}">
               </div>
               <div class="form-group">
-                <input type="text" name="url_picture" class="form-control"  id="url_picture" placeholder="Category of picture" value="{{$p->url}}">
+                <input type="text" name="url_picture" class="form-control"  id="url_picture" placeholder="Picture By Url" value="{{$p->url}}">
               </div>
               <div class="form-group">
                 <img src="{{url('storage/image/'.$p->location)}}" class="img img-responsive">
