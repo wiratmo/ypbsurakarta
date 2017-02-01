@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Tag;
 use App\Model\Category;
+use App\Model\School;
 
 class TagController extends Controller
 {
     public function index($tag){
+        $data['links'] = School::all();
     	$data['articles'] = Article::with(['tags','categories','user','comment'])
     								->select('articles.*')
     								->join('article_tag','article_tag.article_id','articles.id')

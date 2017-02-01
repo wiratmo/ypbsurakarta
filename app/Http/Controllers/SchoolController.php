@@ -38,7 +38,7 @@ class SchoolController extends Controller
             $school->address = $request->address;
             $school->visions = $request->visions;
         	$school->missions = $request->missions;
-            $school->logo = $request->file('logo')->getClientOriginalName();
+            $school->logo = date('now').'-'.$request->file('logo')->getClientOriginalName();
             Storage::disk('logo')->put(date('now').'-'.$request->file('logo')->getClientOriginalName(), file_get_contents($request->file('logo'))); //store file in disk public
             // $file->getClientOriginalName(); //get original name with extension file
                 if ($request->hasFile('picture')){
@@ -62,7 +62,7 @@ class SchoolController extends Controller
     }
 
     public function update(Request $request){
-    	if($request->hasFile('logo')){
+    	
             $school = School::find($request->id);
             $school->title = $request->title;
             $school->keyword = $request->keyword;
@@ -72,8 +72,10 @@ class SchoolController extends Controller
             $school->address = $request->address;
             $school->visions = $request->visions;
             $school->missions = $request->missions;
+            if($request->hasFile('logo')){
             $school->logo = date('now').'-'.$request->file('logo')->getClientOriginalName();
-            Storage::disk('logo')->put(date('now').'-'.$request->file('logo')->getClientOriginalName(), file_get_contents($request->file('logo'))); //store file in disk public
+            Storage::disk('logo')->put(date('now').'-'.$request->file('logo')->getClientOriginalName(), file_get_contents($request->file('logo'))); 
+            }//store file in disk public
             // $file->getClientOriginalName(); //get original name with extension file
                 if ($request->hasFile('picture')){
                     $school->picture = date('now').'-'.$request->file('picture')->getClientOriginalName();
@@ -83,9 +85,6 @@ class SchoolController extends Controller
             $school->save();
             $request->session()->flash('success', "terimakasih anda telah menambahkan School");
             return redirect('/admin/sekolah');
-        }
-        $request->session()->flash('denger', "terimakasih anda tidak memasukkan logo");
-        return redirect('/admin/sekolah');
     }
 
     public function delete(Request $request){

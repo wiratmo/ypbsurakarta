@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Picture;
+use App\Model\School;
 use Auth;
 /*
 * Storage for store file in server
@@ -18,11 +19,13 @@ class PictureController extends Controller
 {
     public function index ($slug){
     	$data['pictures'] = Picture::whereSlug($slug)->where('category',1)->get();
+        $data['links'] = School::all();
     	return dd($data);
     }
 
     public function all(){
     	$data['pictures'] = Picture::Where('category',1)->paginate(16);
+        $data['links'] = School::all();
         return dd($data);
     }
 

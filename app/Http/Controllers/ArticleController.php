@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\School;
 use Auth;
 
 class ArticleController extends Controller
@@ -15,6 +16,7 @@ class ArticleController extends Controller
     */
 
     public function index($slug){
+        $data['links'] = School::all();
     	$data['articles'] = Article::with(['categories','tags','user','comment'])->whereSlug($slug)->get();
         $data['profile'] = Article::profile($slug);
         $article = Article::find($data['articles'][0]->id);
@@ -26,6 +28,7 @@ class ArticleController extends Controller
     }
 
     public function all(){
+        $data['links'] = School::all();
         $data['articles'] = Article::with(['categories','tags','user','comment'])->paginate(5);
         $data['category'] = Category::all();
         return view('dashboard.article', $data);

@@ -87,9 +87,8 @@ p {
 }
 .navbar-default .nav > li > a {
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
-  text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .navbar-default .nav > li > a,
 .navbar-default .nav > li > a:focus {
@@ -127,17 +126,20 @@ p {
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
     color: #00ccff;
+    border-bottom: 1px solid;
 
   }
   .navbar-default.affix {
-    background-color: #00923f;
-    border-color: #00923f;
+    background-color: #2e3933;
+    border-color: #2e3933;
+    top: 0;
   }
   .navbar-default.affix .navbar-header .navbar-brand {
     color: #222222;
     background: url("../storage/image/logo/logo.png");
-    width: 172px;
+    width: 57px; 
     background-size: cover;
+    background-repeat: no-repeat;    
     margin-top: 10px;
     margin-bottom: 6px;
   }
@@ -147,7 +149,7 @@ p {
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
-    color: #222222;
+    color: #fff;
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
@@ -464,7 +466,7 @@ body {
 .navtop{
   display: none;
   top: 0;
-  background: rgba(0, 146, 63, 0.86);
+  background: rgba(16, 28, 21, 0.86);
 }
 
 .sosmed {
@@ -487,8 +489,7 @@ body {
     .navtop{
       display: block;
       padding: 10px 100px;
-      min-height: 105px;
-    padding-bottom: 101px;
+    padding-bottom: 100px;
     }
     .left-navtop{
       float: left;
@@ -502,8 +503,21 @@ body {
       margin-top: 0;
     }
     .navbar-right{
-      margin-top: 7px;
+      margin-top: 12px;
     }
+    .pichead{
+      position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 9px;
+    height: 155px;
+    
+    background: url(http://placehold.it/1550x155);
+    background-size: cover;
+}
+  div.pichead.affix{
+    display: none;
+  }
 }
 
 #home{
@@ -513,11 +527,11 @@ body {
 float: left;
     position: absolute;
     width: 126px;
-    background: #bb0000;
+    background: #00923f;
     color: #ffffff;
     border: solid transparent;
     border-color: rgba(187,0,0,0);
-    border-left-color: #b00;
+    border-left-color: #00923f;
     border-width: 9px;
     z-index: 1;
     border-left-width: 10px;
@@ -527,13 +541,13 @@ float: left;
   font-size: 12px;
 }
 .run{
-      margin-top: 2px;
-    background: #a8c1c7;
+      margin-top: 5px;
+    background: #06b5b0;
 }
 #arrow{
     border-top: 21px solid transparent;
     border-bottom: 22px solid transparent;
-    border-left: 33px solid #bb0000;
+    border-left: 33px solid #00923f;
     position: absolute;
     top: -10px;
     left: 115px;
@@ -650,12 +664,11 @@ Thanks :)*/
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.09);
   margin: 5px 5px;
-  background: white;
+  background: #f7f7f7;
 }
 .bagian:hover{
   display: flex;
-  box-shadow: 0 1px 4px #00923f;
-  border: 1px solid #00923f;
+  box-shadow: 0 1px 4px #06b5b0;
   margin: 5px 5px;
 }
 .new-news{
@@ -669,15 +682,16 @@ Thanks :)*/
 }
 
 #label {
-    background-color: #bb0000;
+    background-color: #00923f;
     padding: 4px 4px;
     color: white;
-    width: 50%;
+    width: 55%;
     margin-top: -26px;
     position: absolute;
 }
 #run{
   color: black;
+  font-weight: 900;
 }
 
 #yayasan{
@@ -686,7 +700,9 @@ Thanks :)*/
 }
 .skh{
   color: black;
-  padding-top: 20px;
+    display: inline-block;
+    padding-top: 20px;
+    padding-right: 60px;
 }
 .galeri {
   padding-top: 2px;
@@ -718,11 +734,11 @@ Thanks :)*/
   margin-top: 2px;
 }
 .agd{
-  font-weight: bold;
   margin-left: 12px;
 }
 .tgl{
-  color: #28d20d;
+  color: #06b5b0;
+  font-weight: 300;
 }
 .moto{
     color: white;
@@ -777,3 +793,82 @@ Thanks :)*/
 .btn-tag{
   margin: 5px 0;
 }
+.main-content{
+  background: white;
+  padding: 5px;
+  margin: 5px;
+}
+a#run:hover{
+  color: white;
+}
+.visi-misi{
+  margin-right: 30px;
+    padding: 18px;
+}
+.w7{
+  font-weight: 600;
+}
+.centered{
+  text-align: center;
+}
+.hrgreen{
+  max-width: 87%;
+  border-color: rgb(0, 146, 63);
+}
+.hrblue{
+  max-width: 87%;
+  border-color: #06b5b0; 
+}
+.nskh{
+      font-weight: 700;
+    color: #00923f;
+}
+.green{
+  color: rgb(0, 146, 63); 
+}
+.title{
+  font-weight: 700;
+  padding-top: 10px;
+}
+.usr{
+  font-size: 12px;
+}
+.dropdown-menu>li>a{
+  padding: 8px 39px;
+      font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-right: 5px solid #00923f;
+}
+#berita-yayasan{
+  float: left;
+    position: absolute;
+    width: 133px;
+    background: #00923f;
+    color: #ffffff;
+    border: solid transparent;
+    border-color: rgba(187,0,0,0);
+    border-left-color: #00923f;
+    border-width: 9px;
+    z-index: 1;
+    border-left-width: 10px;
+}
+#arrow-yayasan{
+      border-top: 21px solid transparent;
+    border-bottom: 23px solid transparent;
+    border-left: 33px solid #00923f;
+    position: absolute;
+    top: -10px;
+    left: 122px;
+}
+.content-berita-terbaru{
+  border: 1px solid #000;
+    padding-left: 29px;
+    padding-top: 16px;
+    margin-top: -10px;
+}
+ul.nav li:hover > ul.dropdown-menu {
+            display: block;
+          }

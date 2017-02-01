@@ -1,8 +1,6 @@
     <div class="navtop">
         <div class="left-navtop">
-            <span class="navtop-brand">'
-                <img src="{{url('storage/image/logo/logo.png')}}">
-            </span>
+            
         </div>
         <div class="right-navtop" >
             <div class="col-sm-9 col-md-9 cari">
@@ -34,16 +32,37 @@
                 <div class="collapse navbar-collapse right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="page-scroll" href="/#home">HOME</a>
+                            <a class="page-scroll" href="{{url('/')}}">Beranda</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="/#yayasan">YAYASAN</a>
+                            <a class="page-scroll" href="{{url('/profil')}}">Profil</a>
+                        </li>
+                       <li class="dropdown">
+                            <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendidikan</a>
+                            <ul class="dropdown-menu">
+                                @foreach($links as $l)
+                                    <li class="page-scroll"><a href="{{$l->website}}">{{$l->title}}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendukung</a>
+                            <ul class="dropdown-menu">
+                              <li class="page-scroll"><a href="{{url('/unit-pendukung/radio-streaming')}}">Radio Streaming</a></li>
+                              <li class="page-scroll"><a href="{{url('/unit-pendukung/tv-streaming')}}">TV Streaming</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a class="page-scroll" href="/#layanan">LAYANAN YAYASAN</a>
+                            <a class="page-scroll" href="{{url('/blog')}}">Berita</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="/#berita-galeri">BERITA DAN GALERI</a>
+                            <a class="page-scroll" href="{{url('/galeri')}}">Galeri</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="{{url('/agenda')}}">Agenda</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="{{url('/galeri')}}">Kontak</a>
                         </li>
                     </ul>
                 </div>
@@ -51,3 +70,6 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <div>
+        <img src="http://placehold.it/1500x300" class="img img-responsive">
+    </div>

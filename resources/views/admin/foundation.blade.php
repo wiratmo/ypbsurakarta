@@ -12,6 +12,7 @@
 					<li class="active"><a data-toggle="tab" href="#identity">Identitas</a></li>
 					<li><a data-toggle="tab" href="#picture">Picture</a></li>
 					<li><a data-toggle="tab" href="#pengurus">Pengurus</a></li>
+					<li><a data-toggle="tab" href="#profil">Profil Yayasan</a></li>
 					<li><a data-toggle="tab" href="#moto">Moto</a></li>
 					<li><a data-toggle="tab" href="#visi">Visi</a></li>
 					<li><a data-toggle="tab" href="#misi">Misi</a></li>
@@ -88,6 +89,21 @@
 								</div>
 								<div class="card-block">		
 									<textarea name="founder" class="article-content"  class="form-control">{{$f->founder}}</textarea>
+								</div>
+							</div>
+						</div>
+          			</div>
+	          			
+          			</div>
+          			<div id="profil" class="tab-pane fade ">
+          			<div class="row">
+          				<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									Profil Yayasan
+								</div>
+								<div class="card-block">
+									<textarea name="profil" class="article-content"  class="form-control">{{$f->profil}}</textarea>
 								</div>
 							</div>
 						</div>

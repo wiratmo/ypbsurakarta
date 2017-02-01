@@ -1,6 +1,5 @@
 @extends('layouts.head')
 @section('content')
-    <div class="container">
         <div class="row">
             <div class="col-md-12" >
                 <div class="col-md-9">
@@ -57,43 +56,46 @@
                 </div>
             </div>
         </div>
-    </div>
     @foreach($fondation as $f)
+<hr class="hrblue">
+    <a href="{{url('/profil')}}">
     <section id="yayasan">
-        <div class="container" style="background: url('{{url('storage/image/logo/'.$f->founder_image)}}'); background-size: cover;">
-            <div class="moto">
-                Moto
-                {!! $f->motto !!}
-            </div>
-        </div>
-    </section>
-
-    <section id="visi-misi">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="visi">
-                        <h1>Visi</h1>
-                        <h2>{!! $f->visions !!}</h2>
+                <div class="col-md-6">
+                    <img src="{{url('storage/image/logo/'.$f->founder_image)}}" class="img img-responsive">
+                    pengurus yayasan
+                </div>
+                <div class="col-md-6">                
+                    <div class="visi-misi">
+                        <h3 class="w7 centered green">Moto Yayasan</h3>
+                        {!! $f->motto !!}
+                        <div class="visi ">
+                        <h3 class="w7 green">Visi</h3>
+                        {!! $f->visions !!}
                     </div>
                     <div class="misi">
-                        <h1>Misi</h1>
-                        <h2>{!! $f->missions !!}</h2>
+                        <h3 class="w7 centered green">Misi</h3>
+                        {!! $f->missions !!}
+                    </div>
                     </div>
                 </div>
             </div> 
         </div>
     </section>
+    </a>
     @endforeach
-
+    <iframe width="620" height="349" src="https://www.youtube.com/embed/aG4m-OZCSHg?feature=oembed&amp;wmode=opaque&amp;rel=0&amp;showinfo=0&amp;modestbranding=0" frameborder="0" allowfullscreen=""></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/M7Wb1QTsln0?feature=oembed&amp;wmode=opaque&amp;rel=0&amp;showinfo=0&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
+    <hr class="hrgreen">
     <section id="layanan" class="layanan">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                    @foreach($school as $s)
+                    @foreach($school as $key => $s)
+                        @if(($key+1) % 2 != 0 )
+                        <div class="row">
+                        @endif
+                        {{$key+1}}
                         <div class="col-md-6">
-                            <div class="row">
                                 <a href="{{$s->website}}">
                                     <div class="skh">
                                         <div class="col-md-3 col-xs-3">
@@ -101,21 +103,21 @@
                                         </div>
                                         <div class="col-md-9 col-xs-9">
                                             <h4 class="nskh">{{$s->name}}</h4>
-                                            {{$s->description}}
                                             <h5>Visi</h5>
-                                            {{$s->visions}}
+                                            {!!$s->visions!!}
+                                            <h5>Misi</h5>
+                                            {!!$s->missions!!}
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                        <hr>
                         </div>
+                        @if($key % 2 == 0 )
+                        </div>
+                        @endif
                     @endforeach
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
-
     <section id="berita-galeri">
         <div class="container">
             <div class="row">
@@ -125,13 +127,13 @@
                             @foreach ($most_view_article as $ma)
                             <div class="bagian">
                                 <div class="col-xs-12">
-                                    <h4>{{$ma->title}}</h4>
-                                    <div class="tgl"><i class="fa fa-clock-o"></i>{{$ma->created_at}}</div>
-                                <p>{{$ma->description}}<a href="{{url($ma->slug)}}">Baca Selengkapnya</a></p>
+                                    <div class="title">{{$ma->title}}</div>
+                                    <span class="tgl usr"> <i class="fa fa-clock-o"></i> {{$ma->created_at->diffForHumans()}} </span>
+                                    <span class="usr"> <i class="fa fa-users"></i> {{$ma->user->name}} </span>
+                                <p>{{str_limit($ma->description, 100)}}<a href="{{url($ma->slug)}}">Baca Selengkapnya</a></p>
                                 </div>
                             </div>
                             @endforeach
-                            <a href="{{url('/blog')}}"><h4>Lihat Berita Keseluruhan</h4></a>
                         </div>
                         <div class="col-md-6 foto">
                             <div class="row">
@@ -141,7 +143,6 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <a href="{{url('/picture')}}"><h4>Lihat Gambar Keseluruhan</h4></a>
                         </div>
                     </div>
                 </div>

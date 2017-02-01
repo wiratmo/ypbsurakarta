@@ -29,5 +29,9 @@
 </head>
 <body id="page-top">
 @include('layouts.navbar')
+<div class="container">
+    <div class="main-content">
 @yield('content')
+    </div>
+</div>
 @include('layouts.footer')

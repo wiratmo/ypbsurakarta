@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Foundation;
+use App\Model\Article;
+use App\Model\School;
 /*
 * Storage for store file in server
 */
@@ -18,7 +20,6 @@ class FoundationController extends Controller
     public function index(){
     	$data['foundation'] = Foundation::all();
     	return view('admin.foundation', $data);
-    	return dd($data);
     }
 
     public function update(Request $request){
@@ -32,6 +33,7 @@ class FoundationController extends Controller
     	$foundation->keyword = $request->keyword;
     	$foundation->founder = $request->founder;
     	$foundation->description = $request->description;
+        $foundation->profil = $request->profil;
     	$foundation->motto = $request->motto;
     	$foundation->visions = $request->visions;
     	$foundation->missions = $request->missions;
@@ -51,5 +53,12 @@ class FoundationController extends Controller
     	
     }
 
-    
+    public function profil(){
+        $data['links'] = School::all();
+        $data['foundation'] = Foundation::all();
+        $data['foundation_article'] = Article::OrderBy('view', 'desc')->take(10)->get();
+        $data['new_article'] = Article::with('user')->OrderBy('created_at', 'desc')->take(15)->get();
+        return view('dashboard.profil',$data);
+        return dd($data);
+    }
 }

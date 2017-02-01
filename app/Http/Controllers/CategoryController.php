@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\School;
 
 class CategoryController extends Controller
 {
     public function index($category){
+        $data['links'] = School::all();
     	$data['articles'] = Article::with(['tags','categories','user','comment'])
     								->select('articles.*')
     								->join('article_category','article_category.article_id','articles.id')

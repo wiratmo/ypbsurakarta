@@ -110,8 +110,11 @@ Route::group(['middleware'=>'admin','prefix'=>'admin'], function(){
 
 Route::get('/','DashboardController@index');
 Route::get('/blog','ArticleController@all');
-Route::get('/picture','PictureController@all');
+Route::get('/galeri','PictureController@all');
+Route::get('/profil','FoundationController@profil');
+Route::get('/unit-pendukung/radio-streaming','RadioController@all');
+Route::get('/unit-pendukung/tv-streaming','TvController@all');
 Route::get('/{slug}','ArticleController@index');
 Route::get('/tag/{tag}', 'TagController@index');
 Route::get('/category/{category}','CategoryController@index');
-Route::get('/picture/{slug}', 'PictureController@index');
+Route::get('/galeri/{slug}', 'PictureController@index');
