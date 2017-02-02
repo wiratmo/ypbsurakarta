@@ -114,6 +114,8 @@ Route::get('/galeri','PictureController@all');
 Route::get('/profil','FoundationController@profil');
 Route::get('/unit-pendukung/radio-streaming','RadioController@all');
 Route::get('/unit-pendukung/tv-streaming','TvController@all');
+Route::get('/unit-pendukung/batieksolo-tv','VideoController@index');
+Route::get('/unit-pendukung/batieksolo-tv/{slug}','VideoController@slug');
 Route::get('/{slug}','ArticleController@index');
 Route::get('/tag/{tag}', 'TagController@index');
 Route::get('/category/{category}','CategoryController@index');

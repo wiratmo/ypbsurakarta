@@ -125,6 +125,15 @@ return [
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
+    | youtube api
+    | api google developer
+    */
+    'google_key' => env('GOOGLE_KEY'),
+
+    'google_client_id' => env('GOOGLE_CLIENT_ID'),
+
+    'google_client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
@@ -179,6 +188,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Madcoda\Youtube\YoutubeServiceProviderLaravel5::class,
+
     ],
 
     /*
@@ -227,6 +238,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Youtube'   => Madcoda\Youtube\Facades\Youtube::class,
 
     ],
 

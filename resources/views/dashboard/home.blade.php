@@ -85,16 +85,13 @@
     </section>
     </a>
     @endforeach
-    <iframe width="620" height="349" src="https://www.youtube.com/embed/aG4m-OZCSHg?feature=oembed&amp;wmode=opaque&amp;rel=0&amp;showinfo=0&amp;modestbranding=0" frameborder="0" allowfullscreen=""></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/M7Wb1QTsln0?feature=oembed&amp;wmode=opaque&amp;rel=0&amp;showinfo=0&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
     <hr class="hrgreen">
     <section id="layanan" class="layanan">
         <div class="container">
                     @foreach($school as $key => $s)
-                        @if(($key+1) % 2 != 0 )
+                        @if($key % 2 === 0 )
                         <div class="row">
                         @endif
-                        {{$key+1}}
                         <div class="col-md-6">
                                 <a href="{{$s->website}}">
                                     <div class="skh">
@@ -112,7 +109,7 @@
                                 </a>
                         <hr>
                         </div>
-                        @if($key % 2 == 0 )
+                        @if($key % 2 === 1 )
                         </div>
                         @endif
                     @endforeach

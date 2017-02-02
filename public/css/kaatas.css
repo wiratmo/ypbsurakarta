@@ -88,7 +88,7 @@ p {
 .navbar-default .nav > li > a {
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 12px;
 }
 .navbar-default .nav > li > a,
 .navbar-default .nav > li > a:focus {
