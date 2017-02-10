@@ -4,6 +4,7 @@
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link" href="{{url('contributor/article')}}"><i class="fa fa-file"></i> Artikel</a>
                     <a class="nav-link" href="{{url('contributor/picture')}}"><i class="fa fa-picture-o"></i> Galeri</a>
+                    <a class="nav-link" href="{{url('contributor/agenda')}}"><i class="fa fa-picture-o"></i> Agenda</a>
                     <a class="nav-link" href="{{url('contributor/tag')}}"><i class="fa fa-picture-o"></i> Tag Artikel</a>
                     <a class="nav-link" href="{{url('contributor/category')}}"><i class="fa fa-picture-o"></i> Kategori Artikel</a>
                 </li>

@@ -11,7 +11,7 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard">
     <link rel="shortcut icon" href="/img/favicon.png">
 
-    <title>Ommaya</title>
+    <title>Administaror Yayasan Batik Surakarta</title>
 
     <!-- include summernote css/js-->
 

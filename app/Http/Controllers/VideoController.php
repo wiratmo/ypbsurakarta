@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\video;
+use App\videocategory;
 use App\Model\School;
 
 class VideoController extends Controller
@@ -11,7 +12,7 @@ class VideoController extends Controller
     
     public function index(){
     	$data['links'] = School::all();
-    	$data['videos'] = video::paginate(9);
+    	$data['videos'] = video::with('user')->paginate(9);
     	return view('video.home', $data);
     	
     }
@@ -19,8 +20,8 @@ class VideoController extends Controller
     public function slug($slug){
     	$id = video::where('slug',$slug)->get();
     	$data['links'] = School::all();
-    	$data['video'] = video::find($id[0]->id);
-    	return view('video.detail', $data);
-    	return dd($data);
+    	$data['video'] = video::with('user')->find($id[0]->id);
+        return view('video.detail', $data);
+        return dd($data);
     }
 }

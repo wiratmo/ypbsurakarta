@@ -22,7 +22,7 @@ class CreatePicturesTable extends Migration
             $table->string('location')->nullable();
             $table->string('url')->nullable();
             $table->integer('category')->nullable();
-            $table->enum('enable',['1','0'])->default('1');
+            $table->enum('accept',['1','0'])->default('0');
             $table->timestamps();
         });
     }

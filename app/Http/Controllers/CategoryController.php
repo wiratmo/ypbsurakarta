@@ -17,7 +17,7 @@ class CategoryController extends Controller
     								->join('categories','categories.id','article_category.category_id')
     								->where('categories.slug',$category)
     								->paginate(5);
-        $data['category'] = Category::all();
+        $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
     	return dd($data);
     }

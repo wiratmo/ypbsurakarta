@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "fzaninotto/faker": "^1.6",
         "intervention/image": "^2.3",
-        "madcoda/php-youtube-api": "^1.2"
+        "madcoda/php-youtube-api": "^1.2",
+        "artesaos/seotools": "^0.10.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

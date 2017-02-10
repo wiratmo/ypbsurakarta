@@ -4,12 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Agenda;
+use App\Model\School;
+use Auth;
+
 class AgendaController extends Controller
 {
+    public function dashboard(){
+        $data['links'] = School::all();
+        return view('dashboard.agenda', $data);
+    }
+
     public function index(){
     	$data['agendas'] = Agenda::all();
     	return view('admin.agenda', $data);
     	return dd($data);
+    }
+
+    public function indexContributor(){
+        $data['agendas'] = Agenda::where('user_id', Auth::user()->id)->get();
+        return view('admin.agenda', $data);
+        return dd($data);
     }
 
     public function create(){

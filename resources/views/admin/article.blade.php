@@ -15,6 +15,7 @@
                 <th>Category</th>
                 <th>Tag</th>
                 <th>Status</th>
+                <th>Accept by Admin</th>
                 <th>Date Create</th>
                 <th>Function</th>
             </tr>
@@ -41,6 +42,13 @@
 	        			<i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i> Off
 	        		@endif
 	        	</td>
+	        	<td>
+	        		@if($a->accept == 1)
+	        			On <i class="fa fa-2x fa-toggle-on" aria-hidden="true"></i>
+	        		@else
+	        			<i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i> Off
+	        		@endif
+	        	</td>
 	        	<td>{{$a->created_at}}</td>
 	        	<td>
 		        	@if(Auth::user()->role === 1)
@@ -52,6 +60,11 @@
 	        				{{ csrf_field() }}
 		        			<input type="hidden" name="id" value="{{$a->id}}">
 		        			<input type="submit" value="hapus" class="btn btn-sm btn-danger">
+		        		</form>
+		        		<form action="{{url('/admin/article/accept')}}" method="post">
+	        				{{ csrf_field() }}
+		        			<input type="hidden" name="id" value="{{$a->id}}">
+		        			<input type="submit" value="accept" class="btn btn-sm btn-success">
 		        		</form>
 					@endif
 	        	</td>

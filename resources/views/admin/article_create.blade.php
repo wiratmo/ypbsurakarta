@@ -10,7 +10,12 @@
 
  <form method="POST" action="{{url('contributor/article/baru')}}" >
           {{ csrf_field() }}
-     
+            <center> 
+             <div class="form-group">
+              <input type="submit" class="btn btn-success" value="post" name="aksi">
+              <input type="submit" class="btn btn-danger" value="draff" name="aksi">
+            </div>
+            </center>
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#article">Content</a></li>
           <li><a data-toggle="tab" href="#meta">Meta</a></li>
@@ -41,12 +46,6 @@
                 <textarea name="keyword"  class="form-control" placeholder="fill it with keyword of article"></textarea>
               </div>
             </div>  
-            <center>
-              
-             <div class="form-group">
-            	<input type="submit" class="btn btn-success" value="simpan">
-            </div>
-            </center>
             </div>
       </form>
 

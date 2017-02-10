@@ -1,23 +1,8 @@
-    <div class="navtop">
-        <div class="left-navtop">
-            
-        </div>
-        <div class="right-navtop" >
-            <div class="col-sm-9 col-md-9 cari">
-                <form class="navbar-form cari" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <i class="fa fa-instagram sosmed" aria-hidden="true"></i>
-            <i class="fa fa-facebook sosmed" aria-hidden="true"></i>
-            <a href="tel://027192012" id="hitam"><i class="fa fa-phone sosmed" aria-hidden="true"> </i></a>
-        </div>
+    <center>
+    <div class="picnav" style="background: url({{url('/storage/image/slider/header.png')}}) ; min-height: 250px; background-repeat:no-repeat;background-size:contain;background-position:center;">
+        
     </div>
+    </center>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,7 +10,7 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top"></a>
+                    <a class="navbar-brand" href="#page-top"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,7 +26,7 @@
                             <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendidikan</a>
                             <ul class="dropdown-menu">
                                 @foreach($links as $l)
-                                    <li class="page-scroll"><a href="{{$l->website}}">{{$l->title}}</a></li>
+                                    <li class="page-scroll"><a href="{{$l->website}}" target="_blank">{{$l->title}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -49,7 +34,7 @@
                             <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendukung</a>
                             <ul class="dropdown-menu">
                               <li class="page-scroll"><a href="{{url('/unit-pendukung/radio-streaming')}}">Radio Streaming</a></li>
-                              <li class="page-scroll"><a href="{{url('/unit-pendukung/tv-streaming')}}">TV Streaming</a></li>
+                              <li class="page-scroll"><a href="http://127.0.0.1:8000/" target="_blank">TV Streaming</a></li>
                             </ul>
                         </li>
                         <li>
@@ -70,6 +55,3 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div>
-        <img src="http://placehold.it/1500x300" class="img img-responsive">
-    </div>

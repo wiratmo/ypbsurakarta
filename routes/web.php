@@ -45,6 +45,13 @@ Route::group(['middleware'=>'contributor','prefix'=>'contributor'], function(){
 		Route::get('/{id}', 'TagController@edit');
 		Route::post('/{id}', 'TagController@update');
 	});
+	Route::group(['prefix'=>'agenda'], function(){
+		Route::get('/', 'AgendaController@indexContributor');
+		Route::get('/baru', 'AgendaController@create');
+		Route::post('/baru', 'AgendaController@store');
+		Route::get('{id}', 'AgendaController@editContributor');
+		Route::post('/{id}', 'AgendaController@updateContributor');
+	});
 });
 
 Route::group(['middleware'=>'admin','prefix'=>'admin'], function(){
@@ -56,6 +63,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin'], function(){
 		Route::get('/{id}', 'ArticleController@editAdmin');
 		Route::post('/{id}', 'ArticleController@update');
 		Route::delete('/delete', 'ArticleController@delete');
+		Route::post('/accept', 'ArticleController@accept');
 	});
 	Route::group(['prefix'=>'picture'], function(){
 		Route::get('/', 'PictureController@indexContributor');
@@ -112,6 +120,7 @@ Route::get('/','DashboardController@index');
 Route::get('/blog','ArticleController@all');
 Route::get('/galeri','PictureController@all');
 Route::get('/profil','FoundationController@profil');
+Route::get('/agenda','AgendaController@dashboard');
 Route::get('/unit-pendukung/radio-streaming','RadioController@all');
 Route::get('/unit-pendukung/tv-streaming','TvController@all');
 Route::get('/unit-pendukung/batieksolo-tv','VideoController@index');

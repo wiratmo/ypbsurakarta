@@ -17,7 +17,7 @@ class ArticleController extends Controller
 
     public function index($slug){
         $data['links'] = School::all();
-    	$data['articles'] = Article::with(['categories','tags','user','comment'])->whereSlug($slug)->get();
+    	$data['articles'] = Article::with(['categories','tags','user','comment'])->whereSlug($slug)->where('status', 1)->where('accept', 1)->get();
         $data['profile'] = Article::profile($slug);
         $article = Article::find($data['articles'][0]->id);
         $article->view = ($article->view) +1;
@@ -29,8 +29,8 @@ class ArticleController extends Controller
 
     public function all(){
         $data['links'] = School::all();
-        $data['articles'] = Article::with(['categories','tags','user','comment'])->paginate(5);
-        $data['category'] = Category::all();
+        $data['articles'] = Article::with(['categories','tags','user','comment'])->where('status', 1)->where('accept', 1)->paginate(5);
+        $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
         return dd($data);
     }
@@ -43,7 +43,6 @@ class ArticleController extends Controller
     public function indexContributor(){
         $data['articles'] = Article::with(['categories','tags','user','comment'])->whereUser_id(Auth::user()->role)->get();
         return view('admin.article', $data);
-        return dd($data);
     }
 
     public function createContributor(){
@@ -58,13 +57,17 @@ class ArticleController extends Controller
         $article->slug = str_slug($request->title);
         $article->description = $request->description;
         $article->content = $request->content;
+        if($request->aksi == 'post'){
+            $article->status = 1;
+        } else if ($request->aksi == 'draff') {
+            $article->status = 0;
+        }
         $article->save();
         $article->tags()->sync($request->tag);
         $article->categories()->sync($request->category);
         
         $request->session()->flash('success', 'anda telah menambahkan artikel baru terimakasih');
         return redirect('/contributor/article');
-        return dd($request->all());
     }
 
     public function editContributor($id){
@@ -84,6 +87,11 @@ class ArticleController extends Controller
         $article->slug = str_slug($request->title);
         $article->description = $request->description;
         $article->content = $request->content;
+        if($request->aksi == 'post'){
+            $article->status = 1;
+        } else if ($request->aksi == 'draff') {
+            $article->status = 0;
+        }
         $article->save();
 
         $request->session()->flash('success', 'anda telah merubah artikel terimakasih');
@@ -99,6 +107,14 @@ class ArticleController extends Controller
     * Controller article in admin user
     * Just edit and delete
     */
+
+    public function accept(Request $request){
+        $article = Article::find($request->id);
+        $article->accept=1;
+        $article->save();
+        $request->session()->flash('success', 'data artikel telah diaccept');
+        return redirect('admin/article');
+    }
     public function indexAdmin(){
         $data['articles'] = Article::with(['categories','tags','user','comment'])->get();
         return view('admin.article', $data);

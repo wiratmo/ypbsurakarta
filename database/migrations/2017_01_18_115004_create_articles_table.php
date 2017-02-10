@@ -40,7 +40,8 @@ class CreateArticlesTable extends Migration
             $table->string('slug');
             $table->longText('content');
             $table->integer('view')->nullable();
-            $table->enum('status',['1','0'])->default('1');
+            $table->enum('status',['1','0'])->default('0');
+            $table->enum('accept',['1','0'])->default('0');
             $table->softDeletes();
             $table->timestamps();
 

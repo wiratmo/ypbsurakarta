@@ -15,6 +15,14 @@
 @endif
           {{ csrf_field() }}
         <input type="hidden" name="id" value="{{$id}}">
+        <center> 
+             <div class="form-group">
+              <input type="submit" class="btn btn-success" value="post" name="aksi">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-danger" value="draff" name="aksi">
+            </div>
+        </center>
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#article">Content</a></li>
           <li><a data-toggle="tab" href="#meta">Meta</a></li>
@@ -52,12 +60,6 @@
               </div>
             </div>  
             @endforeach
-            <center>
-              
-             <div class="form-group">
-              <input type="submit" class="btn btn-success" value="simpan">
-            </div>
-            </center>
             </div>
       </form>
 

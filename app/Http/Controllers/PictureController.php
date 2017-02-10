@@ -18,14 +18,16 @@ use Image;
 class PictureController extends Controller
 {
     public function index ($slug){
-    	$data['pictures'] = Picture::whereSlug($slug)->where('category',1)->get();
+        $data['pictures'] = Picture::whereId($slug)->where('category',1)->where('accept', 1)->get()[0];
         $data['links'] = School::all();
-    	return dd($data);
+        return view('dashboard.picture_detail', $data);
+        return dd($data);
     }
 
     public function all(){
-    	$data['pictures'] = Picture::Where('category',1)->paginate(16);
+        $data['pictures'] = Picture::where('category',1)->where('accept', 1)->paginate(8);
         $data['links'] = School::all();
+        return view('dashboard.picture', $data);
         return dd($data);
     }
 
@@ -36,7 +38,7 @@ class PictureController extends Controller
 
     public function indexContributor(){
         $data['category'] = 1;
-        $data['pictures'] = Picture::Where('category',1)->paginate(16);
+        $data['pictures'] = Picture::Where('category',$data['category'])->paginate(16);
         return view('admin.picture', $data);
     	return dd($data);
     }
@@ -69,7 +71,7 @@ class PictureController extends Controller
             $picture->location = $request->file('picture')->getClientOriginalName();
             $picture->url = $request->url_picture;
             $picture->save();
-            $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/small/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
+            $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/medium/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
             Storage::disk('image')->put(date('now').'-'.$request->file('picture')->getClientOriginalName(), file_get_contents($request->file('picture'))); //store file in disk public
             // $file->getClientOriginalName(); //get original name with extension file
         $request->session()->flash('success', "anda telah mengupload gambar baru");
@@ -110,7 +112,7 @@ class PictureController extends Controller
         $picture->category = $request->category;
         if($request->hasFile('picture')){
             $picture->location = date('now').'-'.$request->file('picture')->getClientOriginalName();
-            $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/small/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
+            $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/medium/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
             Storage::disk('image')->put(date('now').'-'.$request->file('picture')->getClientOriginalName(), file_get_contents($request->file('picture'))); //store file in disk public    
         }
         $picture->url = $request->url_picture;
@@ -133,6 +135,7 @@ class PictureController extends Controller
     public function delete(Request $request){
         $picture = Picture::find($request->id);
         Storage::delete('image/'.$picture->location);
+        Storage::delete('image/medium/'.$picture->location);
         $picture->delete();
 
         $request->session()->flash('danger', "gambar anda telah dihapus");

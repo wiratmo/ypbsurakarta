@@ -13,9 +13,20 @@
 <div class="row">
 	@foreach($pictures as $p)
 	<div class="col-md-3 col-xs-3">
-		<div class="thumbnail">
-			<h5>{{$p->title}}</h5>
-			<hr>
+		@if($p->accept == 1)
+				<div class="thumbnail">
+	       	@else
+	   			<div class="thumbnail" style="background: orange">
+			@endif 
+		
+			<h5>{{str_limit($p->title, 25)}}</h5>
+			<b>Status</b>:
+			@if($p->accept == 1)
+				On <i class="fa fa-2x fa-toggle-on" aria-hidden="true"></i>
+	       	@else
+	   			<i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i> Off
+			@endif 
+			<b>Posted at : </b><i class="fa fa-clock">{{$p->created_at->diffForHumans()}}</i>
 			<img src="{{url('storage/image/'.$p->location)}}" class="img img-responsive">
 			<center class="space">
 					@if(Auth::user()->role === 1)

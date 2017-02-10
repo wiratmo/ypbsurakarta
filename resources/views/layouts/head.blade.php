@@ -8,8 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+            <!-- OR -->
+    {!! SEO::generate() !!}
 
-    <title>Yayasan Pendidikan Batik Surakarta</title>
+      <!-- MINIFIED -->
+    {!! SEO::generate(true) !!}
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

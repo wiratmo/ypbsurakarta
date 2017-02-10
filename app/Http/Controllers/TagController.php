@@ -10,6 +10,7 @@ use App\Model\School;
 
 class TagController extends Controller
 {
+
     public function index($tag){
         $data['links'] = School::all();
     	$data['articles'] = Article::with(['tags','categories','user','comment'])
@@ -18,7 +19,7 @@ class TagController extends Controller
     								->join('tags','tags.id','article_tag.tag_id')
     								->where('tags.slug',$tag)
     								->paginate(5);
-        $data['category'] = Category::all();
+        $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
     	return dd($data);
     }

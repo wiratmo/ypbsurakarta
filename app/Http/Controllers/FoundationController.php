@@ -56,8 +56,8 @@ class FoundationController extends Controller
     public function profil(){
         $data['links'] = School::all();
         $data['foundation'] = Foundation::all();
-        $data['foundation_article'] = Article::OrderBy('view', 'desc')->take(10)->get();
-        $data['new_article'] = Article::with('user')->OrderBy('created_at', 'desc')->take(15)->get();
+        $data['foundation_article'] = Article::OrderBy('view', 'desc')->where('status',1)->where('accept',1)->take(10)->get();
+        $data['new_article'] = Article::with('user')->OrderBy('created_at', 'desc')->where('status',1)->where('accept',1)->take(15)->get();
         return view('dashboard.profil',$data);
         return dd($data);
     }

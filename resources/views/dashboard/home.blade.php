@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="new-news">
-                        <h4 id="label">Agenda Yayasan</h4><hr>
+                        <h4 id="label">Agenda YPB</h4><hr>
                         <div class="agenda">
                             @foreach($agenda as $a)
                                 <div id="agenda">
@@ -57,16 +57,11 @@
             </div>
         </div>
     @foreach($fondation as $f)
-<hr class="hrblue">
     <a href="{{url('/profil')}}">
     <section id="yayasan">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="{{url('storage/image/logo/'.$f->founder_image)}}" class="img img-responsive">
-                    pengurus yayasan
-                </div>
-                <div class="col-md-6">                
+                <div class="col-md-12">                
                     <div class="visi-misi">
                         <h3 class="w7 centered green">Moto Yayasan</h3>
                         {!! $f->motto !!}
@@ -85,7 +80,6 @@
     </section>
     </a>
     @endforeach
-    <hr class="hrgreen">
     <section id="layanan" class="layanan">
         <div class="container">
                     @foreach($school as $key => $s)
@@ -93,7 +87,7 @@
                         <div class="row">
                         @endif
                         <div class="col-md-6">
-                                <a href="{{$s->website}}">
+                                <a href="{{$s->website}}" target="_blank">
                                     <div class="skh">
                                         <div class="col-md-3 col-xs-3">
                                             <img src="{{url('storage/image/logo/'.$s->logo)}}" class="img img-responsive" alt="{{$s->description}}">
