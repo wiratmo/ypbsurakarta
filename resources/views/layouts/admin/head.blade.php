@@ -15,9 +15,9 @@
 
     <!-- include summernote css/js-->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
     <link href="/css/style.css" rel="stylesheet">
 
 
@@ -25,10 +25,12 @@
     
 </head>
 
+<body>
 @include('layouts.admin.navbar')
 @include('layouts.admin.lsidebar')
 @include('layouts.admin.notif_flash')
 @yield('content')
+</body>
 @include('layouts.admin.footer')
 @stack('scripts')
 

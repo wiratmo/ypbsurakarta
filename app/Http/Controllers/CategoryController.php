@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\School;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -39,7 +40,6 @@ class CategoryController extends Controller
 
     public function store (Request $request){
         $category = new Category;
-        $category->title = $request->title;
         $category->keyword = $request->keyword;
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
@@ -47,9 +47,9 @@ class CategoryController extends Controller
         $category->save();
 
         if(Auth::user()->role === 1){
-            return redirect('contributor/article');
+            return redirect('contributor/category');
         } else if(Auth::user()->role ===2){
-            return redirect('admin/article');
+            return redirect('admin/category');
 
         }
     }
@@ -63,17 +63,16 @@ class CategoryController extends Controller
 
     public function update(Request $request){
     	$category = Category::find($request->id);
-        $category->title = $request->title;
         $category->keyword = $request->keyword;
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->description= $request->description;
         $category->save();
 
-        if(Auth::user()->role === 1){
-            return redirect('contributor/article');
-        } else if(Auth::user()->role ===2){
-            return redirect('admin/article');
+        if(Auth::user()->role == 1){
+            return redirect('contributor/category');
+        } else if(Auth::user()->role == 2){
+            return redirect('admin/category');
 
         }
     }

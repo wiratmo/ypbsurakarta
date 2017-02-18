@@ -8,14 +8,14 @@
 						<center>
 						<h2><b>{{$a->title}}</b></h2> 
 						posted by <b>{{$a->user->name}}</b> at <i class="fa fa-date"><b>{{$a->created_at->diffForHumans()}}</b></i> in <span class="tag-article"> @foreach($a->categories as $c)
-								<a href="{{url('/category/'.$c->slug)}}">#{{$c->title}} </a> 
+								<a href="{{url('/category/'.$c->slug)}}">#{{$c->name}} </a> 
 							@endforeach
 							</span>
 							</center>
 						<div class="tag-article">
 							<b>tag</b> :
 							@foreach($a->tags as $t)
-								<a href="{{url('/tag/'.$t->slug)}}"><button class="btn btn-xs btn-tag btn-warning">{{$t->title}}</button></a> 
+								<a href="{{url('/tag/'.$t->slug)}}"><button class="btn btn-xs btn-tag btn-warning">{{$t->name}}</button></a> 
 							@endforeach
 							</div>
 						

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Picture;
+use App\Model\Picturecategory;
 use App\Model\School;
 use Auth;
 /*
@@ -26,11 +27,25 @@ class PictureController extends Controller
 
     public function all(){
         $data['pictures'] = Picture::where('category',1)->where('accept', 1)->paginate(8);
+        $data['picturecategories'] = Picturecategory::all();
         $data['links'] = School::all();
         return view('dashboard.picture', $data);
         return dd($data);
     }
 
+    public function getPicture($slug){
+        $data['pictures'] = Picture::with(['picturecategories'])
+                            ->select('pictures.*')
+                            ->join('picture_picturecategory', 'picture_picturecategory.picture_id','pictures.id')
+                            ->join('picturecategories', 'picturecategories.id', 'picture_picturecategory.picturecategory_id')
+                            ->where('picturecategories.slug', $slug)
+                            ->where('category',1)
+                            ->where('accept', 1)
+                            ->paginate(8);
+        $data['picturecategories'] = Picturecategory::all();
+        $data['links'] = School::all();
+        return view('dashboard.picture', $data);
+    }
     /*
     * Controller article in guest user
     * Just view create and edit 
@@ -38,12 +53,12 @@ class PictureController extends Controller
 
     public function indexContributor(){
         $data['category'] = 1;
-        $data['pictures'] = Picture::Where('category',$data['category'])->paginate(16);
+        $data['pictures'] = Picture::With('picturecategories')->Where('category',$data['category'])->paginate(16);
         return view('admin.picture', $data);
     	return dd($data);
     }
 
-    public function indexContributorSlider(){
+    public function indexSlider(){
         $data['category'] = 2;
         $data['pictures'] = Picture::Where('category',2)->paginate(16);
         return view('admin.picture', $data);
@@ -55,7 +70,7 @@ class PictureController extends Controller
         return view('admin.picture_create', $data);
     }
 
-    public function createContributorSlider(){
+    public function createSlider(){
         $data['category'] = 2;
         return view('admin.picture_create', $data);
     }
@@ -68,22 +83,38 @@ class PictureController extends Controller
             $picture->description = $request->description;
             $picture->name = $request->name;
             $picture->category = $request->category;
-            $picture->location = $request->file('picture')->getClientOriginalName();
+            $picture->location = date('now').'-'.$request->file('picture')->getClientOriginalName();
             $picture->url = $request->url_picture;
             $picture->save();
-            $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/medium/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
-            Storage::disk('image')->put(date('now').'-'.$request->file('picture')->getClientOriginalName(), file_get_contents($request->file('picture'))); //store file in disk public
+            if ($request->has('categorypicture')){
+                $picture->picturecategories()->sync($request->categorypicture);
+            }
+            if($request->category == 1){
+                $img = Image::make($request->file('picture'))->resize(250, 250)->save('storage/image/medium/'.date('now').'-'.$request->file('picture')->getClientOriginalName()); // resize image with image function
+                Storage::disk('image')->put(date('now').'-'.$request->file('picture')->getClientOriginalName(), file_get_contents($request->file('picture'))); //store file in disk public
             // $file->getClientOriginalName(); //get original name with extension file
+            } else if($request->category == 2){
+                Storage::disk('image')->put('/slider/'.date('now').'-'.$request->file('picture')->getClientOriginalName(), file_get_contents($request->file('picture'))); //store file in disk public
+            }
+            
         $request->session()->flash('success', "anda telah mengupload gambar baru");
             if($request->category == 1){
-                return redirect('contributor/picture');
+                if(Auth::user()->role == 1){
+                    return redirect('contributor/picture');
+                } elseif(Auth::user()->role == 2){
+                    return redirect('admin/picture');
+                }
             }elseif ($request->category == 2) {
                 return redirect('admin/slider');
             }
         }
         $request->session()->flash('danger', "anda tidak memasukkan gambar");
         if($request->category == 1){
-            return redirect('contributor/picture');
+            if(Auth::user()->role == 1){
+                return redirect('contributor/picture');
+            } elseif(Auth::user()->role == 2){
+                return redirect('admin/picture');
+            }
         }elseif ($request->category == 2) {
             return redirect('admin/slider');
         }
@@ -103,12 +134,16 @@ class PictureController extends Controller
         return view('admin.picture_edit', $data);
     }
 
-    Public function update(Request $request){
+    public function update(Request $request){
         $picture = Picture::find($request->id);
         $picture->title = $request->title;
+        if($request->has('categorypicture')){
+            $picture->picturecategories()->sync($request->categorypicture);
+        }
         $picture->keyword = $request->keyword;
         $picture->description = $request->description;
         $picture->name = $request->name;
+        $picture->accept= '0';
         $picture->category = $request->category;
         if($request->hasFile('picture')){
             $picture->location = date('now').'-'.$request->file('picture')->getClientOriginalName();
@@ -139,6 +174,23 @@ class PictureController extends Controller
         $picture->delete();
 
         $request->session()->flash('danger', "gambar anda telah dihapus");
+        if ($picture->category == 2) {
+            return redirect('admin/slider');
+        }
+        return redirect('admin/picture');
+    }
+
+   public function getapi(){
+        $data['categories'] = Picturecategory::Select('id', 'name as text')->get();
+        return response()->json($data['categories']);
+    }
+
+    public function getAccept(Request $request){
+        $picture = Picture::find($request->id);
+        $picture->accept = 1;
+        $picture->save();
+
+        $request->session()->flash('success',"Gambar telah mengaktifkan gambar");
         if ($picture->category == 2) {
             return redirect('admin/slider');
         }

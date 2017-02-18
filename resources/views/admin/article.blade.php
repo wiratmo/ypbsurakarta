@@ -52,20 +52,31 @@
 	        	<td>{{$a->created_at}}</td>
 	        	<td>
 		        	@if(Auth::user()->role === 1)
-		        		<a href="{{url('/contributor/article/'.$a->id)}}"><button class="btn btn-sm btn-warning"> Edit</button></a>
+		        	<ul style="list-style: none;display: inline-flex;">
+	        			<li>
+		        		<a href="{{url('/contributor/article/'.$a->id)}}"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a>
+		        		</li>
+		        	</ul>
 		        	@elseif(Auth::user()->role === 2)
-		        		<a href="{{url('/admin/article/'.$a->id)}}"><button class="btn btn-sm btn-warning"> Edit</button></a>
-		        		<form action="{{url('/admin/article/delete')}}" method="post">
-		        			{{ method_field('DELETE') }}
-	        				{{ csrf_field() }}
-		        			<input type="hidden" name="id" value="{{$a->id}}">
-		        			<input type="submit" value="hapus" class="btn btn-sm btn-danger">
-		        		</form>
-		        		<form action="{{url('/admin/article/accept')}}" method="post">
-	        				{{ csrf_field() }}
-		        			<input type="hidden" name="id" value="{{$a->id}}">
-		        			<input type="submit" value="accept" class="btn btn-sm btn-success">
-		        		</form>
+		        	<ul style="list-style: none;display: inline-flex;">
+		        		<li>
+		        			<form action="{{url('/admin/article/accept')}}" method="post">
+		        				{{ csrf_field() }}
+			        			<input type="hidden" name="id" value="{{$a->id}}">
+			        			<input type="submit" value="accept" class="btn btn-sm btn-success">
+		        			</form>	
+		        		</li>
+	        			<li>
+		        			<a href="{{url('/admin/article/'.$a->id)}}"><button class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button></a>
+		        		</li>
+		        		<li>
+			        		<form action="{{url('/admin/article/delete')}}" method="post">
+			        			{{ method_field('DELETE') }}
+		        				{{ csrf_field() }}
+			        			<input type="hidden" name="id" value="{{$a->id}}">
+			        			<input type="submit" value="hapus" class="btn btn-sm btn-danger">
+			        		</form>
+		        		</li>
 					@endif
 	        	</td>
 	        </tr>

@@ -7,6 +7,8 @@ use App\Model\Article;
 use App\Model\Tag;
 use App\Model\Category;
 use App\Model\School;
+use App\Http\Requests\admin\TagRequest;
+use Auth;
 
 class TagController extends Controller
 {
@@ -21,13 +23,11 @@ class TagController extends Controller
     								->paginate(5);
         $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
-    	return dd($data);
     }
 
     public function indexTag(){
     	$data['tags'] = Tag::all();
         return view ('admin.tag', $data);
-    	return dd($data);
     }
 
     public function datajson(){
@@ -39,19 +39,38 @@ class TagController extends Controller
     	return view('admin.tag_create');
     }
 
-    public function store (Request $request){
-    	return dd($request->all());
+    public function store (TagRequest $request){
+        Tag::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'keyword' => $request->keyword,
+            'slug' => str_slug($request->name)
+            ]);
+        
+        if(Auth::user()->role == 1){
+            return redirect('/contributor/tag');
+        } else if(Auth::user()->role == 2){
+            return redirect('/admin/tag');
+        }
     }
-
     public function edit ($id){
         $data['id'] = $id;
     	$data['tags'] = Tag::Where('id',$id)->get();
         return view('admin.tag_edit', $data);
-    	return dd($data);
     }
 
-    public function update(Request $request){
-        
+    public function update(TagRequest $request){
+        Tag::where('id', $request->id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'keyword' => $request->keyword,
+            'slug' => str_slug($request->name),
+            ]);
+        if(Auth::user()->role == 1){
+            return redirect('/contributor/tag');
+        } else if(Auth::user()->role == 2){
+            return redirect('/admin/tag');
+        }
     }
 
     public function delete(Request $request){

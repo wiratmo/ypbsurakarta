@@ -1,15 +1,19 @@
 @extends('layouts.admin.head')
 @section('content')
 
-<center>
-	<h2>Halaman User Contributor <small>Edit Tags</small></h2>
-</center>
-@if(Auth::user()->role === 1)
-    <form method="POST" action="{{url('contributor/tag/'.$id)}}" >
-    @elseif(Auth::user()->role === 2)
-     <form method="POST" action="{{url('admin/tag/'.$id)}}" >
+@if(Auth::user()->role == 1)
+    <center>
+      <h2>Halaman Contributor <small>Edit Category</small></h2>
+    </center>
+    <form method="POST" action="{{url('contributor/category/'.$id)}}" >
+    @elseif(Auth::user()->role == 2)
+    <center>
+      <h2>Halaman Admin <small>Edit Category</small></h2>
+    </center>
+     <form method="POST" action="{{url('admin/category/'.$id)}}" >
 @endif
           {{ csrf_field() }}
+          <input type="hidden" name="id" value="{{$id}}">
      @foreach($categories as $c)
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#tag">Content</a></li>
@@ -23,13 +27,10 @@
             </div>
             <div id="meta" class="tab-pane fade">
               <div class="form-group">
-                <input type="text" name="title"  class="form-control" id="title" placeholder="Title of the article" value="{{$c->title}}">
-              </div>
-              <div class="form-group">
                 <textarea name="description"  class="form-control" placeholder="fill it with description of article">{{$c->description}}</textarea>
               </div>
               <div class="form-group">
-                <textarea name="keyword"  class="form-control" placeholder="fill it with keyword of article">{{$c->description}}</textarea>
+                <textarea name="keyword"  class="form-control" placeholder="fill it with keyword of article">{{$c->keyword}}</textarea>
               </div>
             </div>  
             <center>

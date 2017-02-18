@@ -28,9 +28,8 @@
                                 @else
                                     <div class="item">
                                 @endif
-                                  <img src="{{url('storage/image/'.$s->location)}}" alt="{{$s->title}}" class="img img-responsive">
+                                  <img src="{{url('storage/image/slider/'.$s->location)}}" alt="{{$s->title}}" class="img img-responsive">
                                    <div class="carousel-caption">
-                                    <h3>{{$s->title}}</h3>
                                     <p>{{$s->description}}</p>
                                   </div>
                                 </div>
@@ -47,8 +46,9 @@
                             @foreach($agenda as $a)
                                 <div id="agenda">
                                     <div class="tgl"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$a->implementation}}</div>
-                                    <div class="agd">{{$a->name}}</div>
                                     <div class="agd">{{$a->description}}</div>
+                                    <div class="agd"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$a->place}}</div>
+                                    <br>
                                 </div>    
                             @endforeach
                         </div>
@@ -94,9 +94,9 @@
                                         </div>
                                         <div class="col-md-9 col-xs-9">
                                             <h4 class="nskh">{{$s->name}}</h4>
-                                            <h5>Visi</h5>
-                                            {!!$s->visions!!}
-                                            <h5>Misi</h5>
+                                            <h5 style="font-weight: bold;">Visi</h5>
+                                                {!!$s->visions!!}
+                                            <h5 style="font-weight: bold;">Misi</h5>
                                             {!!$s->missions!!}
                                         </div>
                                     </div>
@@ -129,8 +129,8 @@
                         <div class="col-md-6 foto">
                             <div class="row">
                                 @foreach($picture as $p)
-                                    <div class="col-md-6 col-xs-6 galeri">
-                                        <img src="{{url('storage/image/'.$p->location)}}" class="img img-responsive" alt="{{$p->description}}">
+                                    <div class="col-md-4 col-xs-6 galeri">
+                                        <img src="{{url('storage/image/medium/'.$p->location)}}" class="img img-responsive" alt="{{$p->description}}">
                                     </div>
                                 @endforeach
                             </div>

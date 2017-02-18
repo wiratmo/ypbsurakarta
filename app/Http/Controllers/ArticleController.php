@@ -23,8 +23,6 @@ class ArticleController extends Controller
         $article->view = ($article->view) +1;
         $article->save();
         return view('dashboard.detail', $data);
-        return dd($article);
-        return dd($data);
     }
 
     public function all(){
@@ -63,8 +61,12 @@ class ArticleController extends Controller
             $article->status = 0;
         }
         $article->save();
-        $article->tags()->sync($request->tag);
-        $article->categories()->sync($request->category);
+        if($request->has('tag')){
+            $article->tags()->sync($request->tag);
+        }
+        if($request->has('category')){
+            $article->categories()->sync($request->category);
+        }
         
         $request->session()->flash('success', 'anda telah menambahkan artikel baru terimakasih');
         return redirect('/contributor/article');
@@ -79,14 +81,20 @@ class ArticleController extends Controller
 
     Public function update(Request $request){
         $article = Article::find($request->id);
+        $article->accept='0';
         $article->user_id = Auth::user()->id;
-        $article->tags()->sync($request->tag);
-        $article->categories()->sync($request->category);
+        if($request->has('tag')){
+            $article->tags()->sync($request->tag);
+        }
+        if($request->has('category')){
+            $article->categories()->sync($request->category);
+        }
         $article->keyword = $request->keyword;
         $article->title = $request->title;
         $article->slug = str_slug($request->title);
         $article->description = $request->description;
         $article->content = $request->content;
+
         if($request->aksi == 'post'){
             $article->status = 1;
         } else if ($request->aksi == 'draff') {
@@ -100,7 +108,6 @@ class ArticleController extends Controller
         } else if(Auth::user()->role === 2){
             return redirect('/admin/article');
         }
-        return dd($request->all());
     }
 
     /*

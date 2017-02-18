@@ -36,8 +36,17 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
+        
+        $this->mapVideoRoutes();
+        
         $this->mapWebRoutes();
+
+        $this->mapContributorBlogRoutes();
+
+        $this->mapAdminBlogRoutes();
+        
+
+
 
         //
     }
@@ -59,6 +68,38 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
+    protected function mapAdminBlogRoutes()
+    {
+        Route::group([
+            'middleware' => 'admin',
+            'prefix' => 'admin',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/admin.php');
+        });
+    }
+
+    protected function mapContributorBlogRoutes()
+    {
+        Route::group([
+            'middleware' => 'contributor',
+            'prefix' => 'contributor',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/contributor.php');
+        });
+    }
+
+    protected function mapVideoRoutes()
+    {
+        Route::group([
+            'middleware' => 'web',
+            'prefix' => 'video',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/video.php');
+        });
+    }
     /**
      * Define the "api" routes for the application.
      *

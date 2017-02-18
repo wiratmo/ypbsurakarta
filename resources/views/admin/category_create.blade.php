@@ -1,11 +1,17 @@
 @extends('layouts.admin.head')
 @section('content')
 
+@if(Auth::user()->role === 1)
 <center>
-	<h2>Halaman User Contributor <small>Create Articles</small></h2>
+  <h2>Halaman Contributor <small>Create Category</small></h2>
 </center>
-
- <form method="POST" action="{{url('contributor/category/baru')}}" >
+  <form method="POST" action="{{url('contributor/category/baru')}}" >
+@elseif(Auth::user()->role === 2)
+<center>
+	<h2>Halaman Admin <small>Create Category</small></h2>
+</center>
+  <form method="POST" action="{{url('admin/category/baru')}}" >
+@endif
           {{ csrf_field() }}
      
         <ul class="nav nav-tabs">
@@ -19,9 +25,6 @@
               </div>
             </div>
             <div id="meta" class="tab-pane fade">
-              <div class="form-group">
-                <input type="text" name="title"  class="form-control" id="title" placeholder="Title of the article" required>
-              </div>
               <div class="form-group">
                 <textarea name="description"  class="form-control" placeholder="fill it with description of article"></textarea>
               </div>

@@ -71,8 +71,26 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article-content').summernote({
-          height: 300
+          height: 300,
+          onImageUpload: function(files, editor, welEditable) {
+                sendFile(files[0], editor, welEditable);
+            }
         });
+        function sendFile(file, editor, welEditable) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "/picture",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    editor.insertImage(welEditable, url);
+                }
+            });
+        }
     });
 
     $('#tag_list').select2({
@@ -122,8 +140,26 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article-content').summernote({
-          height: 300
+          height: 300,
+          onImageUpload: function(files, editor, welEditable) {
+                sendFile(files[0], editor, welEditable);
+            }
         });
+        function sendFile(file, editor, welEditable) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "{{url('/picture')}}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    editor.insertImage(welEditable, url);
+                }
+            });
+        }
     });
 
     $('#tag_list').select2({

@@ -1,5 +1,5 @@
     <center>
-    <div class="picnav" style="background: url({{url('/storage/image/slider/header.png')}}) ; min-height: 250px; background-repeat:no-repeat;background-size:contain;background-position:center;">
+    <div class="picnav" style="background: url({{url('/storage/image/slider/header.png')}}) ; min-height: 250px; background-repeat:no-repeat;background-size:contain;background-position:center; width: 100%;">
         
     </div>
     </center>

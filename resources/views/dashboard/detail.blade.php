@@ -15,7 +15,7 @@
 							<br>
 							<i class="fa fa-date"><b> {{$a->created_at->diffForHumans()}}</b></i> in <b> Tag : </b>
 						@foreach($a->tags as $t)
-							<a href="{{url('/tag/'.$t->slug)}}"><button class="btn btn-xs btn-tag btn-warning">{{$t->title}}</button></a> 
+							<a href="{{url('/tag/'.$t->slug)}}"><button class="btn btn-xs btn-tag btn-warning">{{$t->name}}</button></a> 
 						@endforeach
 						<br>
 						<h4>{!!$a->content!!}</h4>

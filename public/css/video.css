@@ -63,10 +63,10 @@ p {
 .navbar-default {
   background-color: white;
   border-color: rgba(34, 34, 34, 0.05);
-/*  -webkit-transition: all 0.35s;
+  -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-*/  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
   letter-spacing: 1px;
 }
@@ -121,14 +121,17 @@ p {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: black;
-    background: rgba(255, 255, 255, 0.86);
+        color: black;
+    font-size: 12px;
+        text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.3);
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    background: black;
-    color: white;
-    border-bottom: 4px solid #00ccff;
+        color: #fff;
+    background: #c30404;
+    border-bottom: 1px solid;
+
   }
   .navbar-default.affix {
     background-color: #2e3933;
@@ -151,7 +154,6 @@ p {
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
     color: #fff;
-    background: none;
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
@@ -232,7 +234,6 @@ header .device-container .screen img {
 }
 section {
   padding: 30px 0;
-  background: white;
 }
 section h2 {
   font-size: 50px;
@@ -487,9 +488,7 @@ body {
 
 @media (min-width: 768px) {
     .affix-top{
-      top: -6px;
-      margin-left: 20px;
-
+      margin-top:35px;
     }
     .navtop{
       display: block;
@@ -508,7 +507,7 @@ body {
       margin-top: 0;
     }
     .navbar-right{
-      margin-top: 198px;
+      margin-top: 12px;
     }
     .pichead{
       position: fixed;
@@ -527,9 +526,7 @@ body {
 
 #home{
   padding-top: 10px;
-  background: transparent;
 }
-
 #left{
 float: left;
     position: absolute;
@@ -690,22 +687,12 @@ Thanks :)*/
 
 #label {
     background-color: #00923f;
-    padding: 9px 11px;
-    color: white;
-    width: 55%;
-    margin-top: -26px;
-    position: absolute;
-    font-size: 14px;
-}
-#archive {
-background-color: #00923f;
     padding: 4px 4px;
     color: white;
     width: 55%;
     margin-top: -26px;
     position: absolute;
 }
-
 #run{
   color: black;
   font-weight: 900;
@@ -788,10 +775,9 @@ background-color: #00923f;
 .article{
   background: white;
         display: block;
-    padding: 0px 33px;
+    padding: 17px 32px;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
-    margin-bottom:20px;
-    padding-bottom: 15px;
+    margin: 10px 0;
 }
 .category li{
   list-style-type: none;
@@ -803,20 +789,15 @@ background-color: #00923f;
     border: 1px solid;
     box-shadow: 0 1px 4px rgba(0,0,0,.04);
     border: 1px solid rgba(0,0,0,.09);
-    background: white;
 }
 
 .putih{
   color: white;
 }
-.btn-tag, .btn-tag:hover{
+.btn-tag{
   margin: 5px 0;
   text-transform: lowercase;
-  background:#00ccff;
-  border-color: #00ccff;
-  padding: 2px 7px;
 }
-
 .main-content{
   padding: 5px;
   margin: 5px;
@@ -888,7 +869,7 @@ a#run:hover{
     left: 122px;
 }
 .content-berita-terbaru{
-  background: white;
+  border: 1px solid #000;
     padding-left: 29px;
     padding-top: 16px;
     margin-top: -10px;
@@ -903,44 +884,26 @@ ul.nav li:hover > ul.dropdown-menu {
 .titledev p::after{
   margin-bottom: 1px solid #000;
 }
+.sidebar-video{
+  padding:10px 0px;
+  overflow-y:scroll;
+  height: 505px;
+}
+.sidebar-video::-webkit-scrollbar{width:6px;background:#444}
+.sidebar-video::-webkit-scrollbar-thumb{background-color:red;border-radius:3px}
+.navimg{
+  background-image:url('/storage/image/slider/tvheader.png');
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center;
+  height: 250px;
+}
+.lastvideo{
+  background: white;
+}
 .video{
-  padding: 20px;
-  margin:5px;
-  border: 1px solid;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
-  border: 1px solid rgba(0,0,0,.09);
-  background: white; 
-}
-.video:hover{
-  box-shadow: 0 1px 4px blue;
-  
-}
-.picnav{
-  width: 80%;
-  text-align: center;
-}
-.carousel-caption{
-    position: absolute;
-    right: 0%;
-    bottom: -29px;
-    left: 0%;
-    z-index: 10;
-    color: #fff;
-    text-align: right;
-    padding-top: 0;
-    background: rgba(0, 0, 0, 0.58);
-    padding-right: 15px;
-    padding: 14px;
-}
-.navbar-default.affix .nav {
-  margin-top: 10px;
-}
-.kiri{
-
-}
-.bagian-new{
+  display: flex;
   background: white;
-}
-.profile{
-  background: white;
+  margin-bottom: 10px;
+  padding: 7px 9px;
 }

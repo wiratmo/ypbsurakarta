@@ -2,10 +2,10 @@
 
         <nav class="sidebar-nav">
             <ul class="nav">
-                @if(Auth::user()->role === 1)
+                @if(Auth::user()->role == 1)
                     @include('layouts.admin.contributor_navbar')
                 
-                @elseif(Auth::user()->role === 2)
+                @elseif(Auth::user()->role == 2)
                     @include('layouts.admin.admin_navbar')
                 
                 @endif
