@@ -139,6 +139,7 @@ class ArticleController extends Controller
     public function accept(Request $request){
         $article = Article::find($request->id);
         $article->accept=1;
+        $article->status=1;
         $article->save();
         $request->session()->flash('success', 'data artikel telah diaccept');
         return redirect('admin/article');

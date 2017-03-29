@@ -15,9 +15,11 @@
 							</center>
 						<div class="tag-article">
 							tag:
+							<p class="content-standar">
 							@foreach($a->tags as $t)
-								<p class="content-standar"><a href="{{url('/tag/'.$t->slug)}}"><i class="fa fa-tags"></i>{{$t->name}}</a> </p>
+								<a href="{{url('/tag/'.$t->slug)}}"><i class="fa fa-tags"></i>{{$t->name}}</a>
 							@endforeach
+							 </p>
 							</div>
 						
 						<a style="color: black" href="{{url('/blog/'.$a->slug)}}"><p> {{($a->description)}}</p></a>
