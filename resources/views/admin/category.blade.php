@@ -3,9 +3,9 @@
 
 <center>
 	<h2>Halaman User Contributor <small>Manage Categories</small></h2>
-	@if(Auth::user()->role === 1)
+	@if(Auth::user()->role == 1)
 		<a href="{{url('/contributor/category/baru')}}"><button class="btn btn-sm btn-success">Buat Baru</button></a>
-	@elseif(Auth::user()->role === 2)
+	@elseif(Auth::user()->role == 2)
 		<a href="{{url('/admin/category/baru')}}"><button class="btn btn-sm btn-success">Buat Baru</button></a>
 	@endif
 </center>
@@ -25,13 +25,13 @@
 	        	<td>{{$c->description}}</td>
 	        	<td>{{$c->keyword}}</td>
 	        	<td>
-	        		@if(Auth::user()->role === 1)
+	        		@if(Auth::user()->role == 1)
 	        		<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 	        				<a href="{{url('/contributor/category/'.$c->id)}}"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a>
 	        			</li>
 	        		</ul>
-		        	@elseif(Auth::user()->role === 2)
+		        	@elseif(Auth::user()->role == 2)
 		        	<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 	        				<a href="{{url('/admin/category/'.$c->id)}}"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a>

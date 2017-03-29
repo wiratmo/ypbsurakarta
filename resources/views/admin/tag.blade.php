@@ -27,13 +27,13 @@
 	        	<td>{{$t->keyword}}</td>
 	        	<td>
 	        		
-	        		@if(Auth::user()->role === 1)
+	        		@if(Auth::user()->role == 1)
 	        		<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 	        				<a href="{{url('/contributor/tag/'.$t->id)}}"><button class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></button></a>
 	        			</li>
 	        		</ul>
-		        	@elseif(Auth::user()->role === 2)
+		        	@elseif(Auth::user()->role == 2)
 		        	<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 	        				<a href="{{url('/admin/tag/'.$t->id)}}"><button class="btn btn-sm btn-primary">  <i class="fa fa-edit"></i></button></a>

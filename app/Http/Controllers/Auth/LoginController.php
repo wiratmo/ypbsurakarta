@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Model\School;
+use App\Model\Picturecategory;
+
 
 class LoginController extends Controller
 {
@@ -41,6 +43,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
         return view('auth.login', $data);
     }
 }

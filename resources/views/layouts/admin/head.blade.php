@@ -18,6 +18,7 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
+    <link href="/css/summernote.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
 

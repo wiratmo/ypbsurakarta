@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Foundation;
 use App\Model\Article;
 use App\Model\School;
+use App\Model\Picturecategory;
 /*
 * Storage for store file in server
 */
@@ -14,9 +15,21 @@ use Storage;
 * Image for modificated image file
 */
 use Image;
+/*
+* SEO
+*/
+use SEOMeta;
 
 class FoundationController extends Controller
 {
+    public function __construct(){
+        $data['fondation'] = Foundation::all();
+        SEOMeta::setTitle($data['fondation'][0]->title);
+        SEOMeta::setDescription($data['fondation'][0]->description);
+        SEOMeta::addMeta('article:published_time', $data['fondation'][0]->created_at, 'property');
+        SEOMeta::addKeyword([$data['fondation'][0]->keyword]);
+    }
+
     public function index(){
     	$data['foundation'] = Foundation::all();
     	return view('admin.foundation', $data);
@@ -55,10 +68,21 @@ class FoundationController extends Controller
 
     public function profil(){
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
         $data['foundation'] = Foundation::all();
         $data['foundation_article'] = Article::OrderBy('view', 'desc')->where('status',1)->where('accept',1)->take(10)->get();
         $data['new_article'] = Article::with('user')->OrderBy('created_at', 'desc')->where('status',1)->where('accept',1)->take(15)->get();
         return view('dashboard.profil',$data);
         return dd($data);
+    }
+
+    public function susunan(){
+        $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
+        $data['foundation'] = Foundation::all();
+        $data['foundation_article'] = Article::OrderBy('view', 'desc')->where('status',1)->where('accept',1)->take(10)->get();
+        $data['new_article'] = Article::with('user')->OrderBy('created_at', 'desc')->where('status',1)->where('accept',1)->take(15)->get();
+        return view('dashboard.susunan',$data);
+           
     }
 }

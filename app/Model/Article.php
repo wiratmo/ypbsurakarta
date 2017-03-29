@@ -9,6 +9,7 @@ use App\Model\UserProfile;
 use App\User;
 use App\Model\Comment;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Article extends Model
 {

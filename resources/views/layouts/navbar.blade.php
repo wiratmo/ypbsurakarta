@@ -1,8 +1,9 @@
-    <center>
-    <div class="picnav" style="background: url({{url('/storage/image/slider/header.png')}}) ; min-height: 250px; background-repeat:no-repeat;background-size:contain;background-position:center; width: 100%;">
-        
-    </div>
-    </center>
+<center>
+    <header>
+        <div class="picnav" style="background: url({{url('/storage/image/slider/header.png')}}) ; min-height: 250px; background-repeat:no-repeat;background-size:contain;background-position:center; width: 100%;">
+        </div>    
+    </header>
+</center>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,7 +21,11 @@
                             <a class="page-scroll" href="{{url('/')}}">Beranda</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="{{url('/profil')}}">Profil</a>
+                            <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Profil</a>
+                            <ul class="dropdown-menu">
+                              <li class="page-scroll"><a href="{{url('/susunan-pengurus')}}">Susunan Pengurus</a></li>
+                              <li class="page-scroll"><a href="{{url('/sejarah')}}">Sejarah</a></li>
+                            </ul>
                         </li>
                        <li class="dropdown">
                             <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendidikan</a>
@@ -34,7 +39,7 @@
                             <a class="dropdown-toggle page-scroll" data-toggle="dropdown" href="#">Unit Pendukung</a>
                             <ul class="dropdown-menu">
                               <li class="page-scroll"><a href="{{url('/unit-pendukung/radio-streaming')}}">Radio Streaming</a></li>
-                              <li class="page-scroll"><a href="http://127.0.0.1:8000/" target="_blank">TV Streaming</a></li>
+                              <li class="page-scroll"><a href="http://batieksolotv.tv/" target="_blank">TV Streaming</a></li>
                             </ul>
                         </li>
                         <li>
@@ -42,12 +47,11 @@
                         </li>
                         <li>
                             <a class="page-scroll" href="{{url('/galeri')}}">Galeri</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="{{url('/agenda')}}">Agenda</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="{{url('/galeri')}}">Kontak</a>
+                            <ul class="dropdown-menu">
+                                @foreach($picturecategory as $pc)
+                                    <li class="page-scroll"><a href="{{url('/galeri/cat/'.$pc->slug)}}" >{{$pc->name}}</a></li>
+                                @endforeach
+                            </ul>
                         </li>
                     </ul>
                 </div>

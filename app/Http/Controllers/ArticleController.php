@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\School;
+use App\Model\Picturecategory;
 use Auth;
+use Carbon\Carbon;
+use SEOMeta;
 
 class ArticleController extends Controller
 {
@@ -17,18 +20,36 @@ class ArticleController extends Controller
 
     public function index($slug){
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
     	$data['articles'] = Article::with(['categories','tags','user','comment'])->whereSlug($slug)->where('status', 1)->where('accept', 1)->get();
         $data['profile'] = Article::profile($slug);
         $article = Article::find($data['articles'][0]->id);
         $article->view = ($article->view) +1;
+        /*Seo*/
+        SEOMeta::setTitle($data['articles'][0]->title);
+        SEOMeta::setDescription($data['articles'][0]->description);
+        SEOMeta::addMeta('article:published_time', $data['articles'][0]->created_at, 'property');
+        SEOMeta::addKeyword([$data['articles'][0]->keyword]);
+        /*endseo*/
         $article->save();
         return view('dashboard.detail', $data);
     }
 
     public function all(){
         $data['links'] = School::all();
-        $data['articles'] = Article::with(['categories','tags','user','comment'])->where('status', 1)->where('accept', 1)->paginate(5);
+        $data['picturecategory'] = Picturecategory::all();
+        $data['articles'] = Article::with(['categories','tags','user','comment'])->where('status', 1)->where('accept', 1);
         $data['category'] = Category::take(10)->get();
+        $data['archived'] = Article::selectRaw('year(created_at) year, monthname(created_at) month, count(*) count')
+                                ->groupBy('year','month')
+                                ->orderBy('created_at','desc')
+                                ->get();
+        if($month = Request('month')){
+            $data['articles']->whereMonth('created_at', Carbon::parse($month)->month);
+        }if($year = Request('year')){
+            $data['articles']->whereYear('created_at', $year);
+        }
+        $data['articles'] = $data['articles']->paginate(10);
         return view('dashboard.article', $data);
         return dd($data);
     }
@@ -103,9 +124,9 @@ class ArticleController extends Controller
         $article->save();
 
         $request->session()->flash('success', 'anda telah merubah artikel terimakasih');
-        if(Auth::user()->role === 1){
+        if(Auth::user()->role == 1){
             return redirect('/contributor/article');
-        } else if(Auth::user()->role === 2){
+        } else if(Auth::user()->role == 2){
             return redirect('/admin/article');
         }
     }

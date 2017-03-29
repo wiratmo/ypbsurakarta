@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\School;
+use App\Model\Picturecategory;
 use Auth;
 
 class CategoryController extends Controller
 {
     public function index($category){
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
     	$data['articles'] = Article::with(['tags','categories','user','comment'])
     								->select('articles.*')
     								->join('article_category','article_category.article_id','articles.id')
     								->join('categories','categories.id','article_category.category_id')
     								->where('categories.slug',$category)
+                                    ->where('accept', 1)
     								->paginate(5);
         $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
@@ -46,9 +49,9 @@ class CategoryController extends Controller
         $category->description= $request->description;
         $category->save();
 
-        if(Auth::user()->role === 1){
+        if(Auth::user()->role == 1){
             return redirect('contributor/category');
-        } else if(Auth::user()->role ===2){
+        } else if(Auth::user()->role ==2){
             return redirect('admin/category');
 
         }

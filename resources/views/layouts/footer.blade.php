@@ -1,15 +1,21 @@
     <footer>
         <div class="container">
-            <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
+            <p>&copy; 2017 Yayasan Pendidikan Batik Surakarta.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="#">Privacy</a>
+                    <a  href="{{url('/')}}">Beranda</a>
+                </li>
+                <li >
+                    <a href="{{url('/susunan-pengurus')}}">Susunan Pengurus</a>
+                </li>
+                <li >
+                    <a href="{{url('/sejarah')}}">Sejarah</a>
                 </li>
                 <li>
-                    <a href="#">Terms</a>
+                    <a href="http://batieksolotv.tv/" target="_blank">TV Streaming</a>
                 </li>
                 <li>
-                    <a href="#">FAQ</a>
+                    <a href="{{url('/blog')}}">Berita</a>
                 </li>
             </ul>
         </div>

@@ -63,10 +63,15 @@
 		Route::get('/', 'SchoolController@index');
 		Route::get('/baru', 'SchoolController@create');
 		Route::post('/baru', 'SchoolController@store');
-		Route::get('{id}', 'SchoolController@edit');
+		Route::get('/{id}', 'SchoolController@edit');
 		Route::post('/{id}', 'SchoolController@update');
 		Route::delete('/delete', 'SchoolController@delete');
 	});
 	Route::group(['prefix'=>'picturecategory'], function(){
 		Route::get('/', 'PictureCategoryController@index');
+		Route::get('/baru', 'PictureCategoryController@create');
+		Route::post('/baru', 'PictureCategoryController@store');
+		Route::get('/{id}', 'PictureCategoryController@edit');
+		Route::post('/{id}', 'PictureCategoryController@update');
+		Route::delete('/delete', 'PictureCategoryController@delete');
 	});

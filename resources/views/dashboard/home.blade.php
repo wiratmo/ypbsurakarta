@@ -1,12 +1,12 @@
 @extends('layouts.head')
 @section('content')
+    <div class="container">
         <div class="row">
             <div class="col-md-12" >
                 <div class="col-md-9">
                     <div class="row">
                        <section id="hot-news">
                         <div id="left">
-                            <i id="arrow"></i>
                             Berita Terbaru
                         </div>
                         <div class="run">
@@ -41,14 +41,13 @@
                 </div>
                 <div class="col-md-3">
                     <div class="new-news">
-                        <h4 id="label">Agenda YPB</h4><hr>
+                        <h4 id="label">Agenda YPB</h4>
                         <div class="agenda">
                             @foreach($agenda as $a)
-                                <div id="agenda">
-                                    <div class="tgl"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$a->implementation}}</div>
+                                <div>
+                                    <div class="tgl"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$a->implementation}}<br><i class="fa fa-map-marker" aria-hidden="true"></i> {{$a->place}}</div>
                                     <div class="agd">{{$a->description}}</div>
-                                    <div class="agd"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$a->place}}</div>
-                                    <br>
+                                    <hr id="hragenda">
                                 </div>    
                             @endforeach
                         </div>
@@ -57,31 +56,29 @@
             </div>
         </div>
     @foreach($fondation as $f)
-    <a href="{{url('/profil')}}">
+    <a href="{{route('yayasan.sejarah')}}">
     <section id="yayasan">
-        <div class="container">
             <div class="row">
                 <div class="col-md-12">                
                     <div class="visi-misi">
-                        <h3 class="w7 centered green">Moto Yayasan</h3>
-                        {!! $f->motto !!}
                         <div class="visi ">
-                        <h3 class="w7 green">Visi</h3>
+                        <h5 class="w7 green">Moto Yayasan</h5>
+                        {!! $f->motto !!}
+                        <h5 class="w7 green">Visi</h5>
                         {!! $f->visions !!}
-                    </div>
+                        </div>
                     <div class="misi">
-                        <h3 class="w7 centered green">Misi</h3>
+                        <h5 class="w7 centered green">Misi</h5>
                         {!! $f->missions !!}
                     </div>
                     </div>
                 </div>
             </div> 
-        </div>
     </section>
     </a>
+    <br>
     @endforeach
     <section id="layanan" class="layanan">
-        <div class="container">
                     @foreach($school as $key => $s)
                         @if($key % 2 === 0 )
                         <div class="row">
@@ -94,10 +91,10 @@
                                         </div>
                                         <div class="col-md-9 col-xs-9">
                                             <h4 class="nskh">{{$s->name}}</h4>
-                                            <h5 style="font-weight: bold;">Visi</h5>
-                                                {!!$s->visions!!}
-                                            <h5 style="font-weight: bold;">Misi</h5>
-                                            {!!$s->missions!!}
+                                            <h6 class="visimisi">Visi</h6>
+                                                <div class="content-fixed">{!!$s->visions!!}</div>
+                                            <h6 class="visimisi">Misi</h6>
+                                                <div class="content-fixed">{!!$s->missions!!}</div>
                                         </div>
                                     </div>
                                 </a>
@@ -107,13 +104,10 @@
                         </div>
                         @endif
                     @endforeach
-        </div>
     </section>
+    <br>
     <section id="berita-galeri">
-        <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="row">
                         <div class="col-md-6 berita">
                             @foreach ($most_view_article as $ma)
                             <div class="bagian">
@@ -121,7 +115,7 @@
                                     <div class="title">{{$ma->title}}</div>
                                     <span class="tgl usr"> <i class="fa fa-clock-o"></i> {{$ma->created_at->diffForHumans()}} </span>
                                     <span class="usr"> <i class="fa fa-users"></i> {{$ma->user->name}} </span>
-                                <p>{{str_limit($ma->description, 100)}}<a href="{{url($ma->slug)}}">Baca Selengkapnya</a></p>
+                                <p>{{str_limit($ma->description, 100)}}<a href="{{url('/blog/'.$ma->slug)}}">Baca Selengkapnya</a></p>
                                 </div>
                             </div>
                             @endforeach
@@ -135,9 +129,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
+    </div>
 @endsection

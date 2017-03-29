@@ -34,7 +34,7 @@
 	        		@endforeach
 	        	</td>
 	        	<td>
-	        		@if($a->status === 1)
+	        		@if($a->status == 1)
 	        			<i class="fa fa-toggle-on" aria-hidden="true"></i>
 	        		@else
 	        			<i class="fa fa-toggle-off" aria-hidden="true"></i>

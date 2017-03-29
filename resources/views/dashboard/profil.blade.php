@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-9 profile">
 			<div>
-				  <section id="hot-news">
+				  <div id="hot-news">
                     <div id="berita-yayasan">
                         <i id="arrow-yayasan"></i>
                         Berita Yayasan
@@ -16,19 +16,16 @@
                         @endforeach
                     </marquee>
                     </div>
-                    </section> 
+                    </div> 
 			</div>
 				<ol class="breadcrumb">
 				  <li><a href="{{url('/')}}">beranda</a></li>
-				  <li class="active"><a href="{{url('/profil')}}">profil</a></li>
+				  <li class="active">profil</a></li>
+				  <li class="active"><a href="{{url('/sejarah')}}">sejarah yayasan</a></li>
 				</ol>
 			<div class="content-profil">
 				<div class="addthis_inline_share_toolbox_ojx9"></div>
-				<center><h2>Profil Yayasan Batik Surakarta</h2></center>
-				<br>
-				<!-- <img src="{{url('storage/image/logo/'.$f->founder_image)}}" class="img img-responsive"> -->
-				<br>
-				<div style="padding: 10px">
+				<div style="padding: 0 30px">
 					{!!$f->profil!!}
 					
 				</div>

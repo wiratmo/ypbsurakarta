@@ -20,7 +20,7 @@ class CreateFoundationsTable extends Migration
             $table->string('logo_location')->nullable();
             $table->string('founder_image')->nullable();
             $table->string('founder')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->longText('motto')->nullable();
             $table->longText('visions')->nullable();
             $table->longText('missions')->nullable();

@@ -36,16 +36,14 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-        
-        $this->mapVideoRoutes();
-        
-        $this->mapWebRoutes();
-
+                
         $this->mapContributorBlogRoutes();
 
         $this->mapAdminBlogRoutes();
-        
 
+        $this->mapVideoRoutes();
+
+        $this->mapWebRoutes();
 
 
         //
@@ -71,7 +69,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminBlogRoutes()
     {
         Route::group([
-            'middleware' => 'admin',
+            'middleware' => ['web','admin'],
             'prefix' => 'admin',
             'namespace' => $this->namespace,
         ], function ($router) {
@@ -82,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapContributorBlogRoutes()
     {
         Route::group([
-            'middleware' => 'contributor',
+            'middleware' => ['web','contributor'],
             'prefix' => 'contributor',
             'namespace' => $this->namespace,
         ], function ($router) {

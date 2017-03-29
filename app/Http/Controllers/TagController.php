@@ -8,6 +8,7 @@ use App\Model\Tag;
 use App\Model\Category;
 use App\Model\School;
 use App\Http\Requests\admin\TagRequest;
+use App\Model\Picturecategory;
 use Auth;
 
 class TagController extends Controller
@@ -15,11 +16,13 @@ class TagController extends Controller
 
     public function index($tag){
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
     	$data['articles'] = Article::with(['tags','categories','user','comment'])
     								->select('articles.*')
     								->join('article_tag','article_tag.article_id','articles.id')
     								->join('tags','tags.id','article_tag.tag_id')
     								->where('tags.slug',$tag)
+                                    ->where('accept', 1)
     								->paginate(5);
         $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);

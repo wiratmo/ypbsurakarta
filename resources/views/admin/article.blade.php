@@ -3,7 +3,7 @@
 
 <center>
 	<h2>Halaman User Contributor <small>Manage Articles</small></h2>
-	@if(Auth::user()->role === 1)
+	@if(Auth::user()->role == 1)
 		<a href="{{url('/contributor/article/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
 	@endif
 </center>
@@ -51,19 +51,19 @@
 	        	</td>
 	        	<td>{{$a->created_at}}</td>
 	        	<td>
-		        	@if(Auth::user()->role === 1)
+		        	@if(Auth::user()->role == 1)
 		        	<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 		        		<a href="{{url('/contributor/article/'.$a->id)}}"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a>
 		        		</li>
 		        	</ul>
-		        	@elseif(Auth::user()->role === 2)
+		        	@elseif(Auth::user()->role == 2)
 		        	<ul style="list-style: none;display: inline-flex;">
 		        		<li>
 		        			<form action="{{url('/admin/article/accept')}}" method="post">
 		        				{{ csrf_field() }}
 			        			<input type="hidden" name="id" value="{{$a->id}}">
-			        			<input type="submit" value="accept" class="btn btn-sm btn-success">
+			        			<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
 		        			</form>	
 		        		</li>
 	        			<li>
@@ -74,7 +74,7 @@
 			        			{{ method_field('DELETE') }}
 		        				{{ csrf_field() }}
 			        			<input type="hidden" name="id" value="{{$a->id}}">
-			        			<input type="submit" value="hapus" class="btn btn-sm btn-danger">
+			        			<button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
 			        		</form>
 		        		</li>
 					@endif

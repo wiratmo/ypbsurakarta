@@ -7,7 +7,7 @@ return [
          */
         'defaults'       => [
             'title'        => "Yayasan Pendidikan Batik Surakarta", // set false to total remove
-            'description'  => 'For those who helped create the Genki Dama', // set false to total remove
+            'description'  => 'Yayasan Pendidikan Batik Surakarta', // set false to total remove
             'separator'    => ' - ',
             'keywords'     => [],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
@@ -29,8 +29,8 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'title'       => 'Yayasan Pendidikan Batik Surakarta', // set false to total remove
+            'description' => 'Yayasan Pendidikan Batik Surakarta', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
             'site_name'   => false,

@@ -3,7 +3,11 @@
 <center>
   <h2>Halaman User Contributor <small>Tambah Agenda</small></h2>
 </center>
+      @if(Auth::user()->role == 1)
+     <form method="POST" action="{{url('contributor/agenda/'.$id)}}" >
+      @elseif(Auth::user()->role == 2)
      <form method="POST" action="{{url('admin/agenda/'.$id)}}" >
+      @endif
           {{ csrf_field() }}
         <input type="hidden" name="id" value="{{$id}}">
               <div class="form-group">

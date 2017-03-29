@@ -1,14 +1,25 @@
 @extends('layouts.admin.head')
 @push('style')
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" rel="stylesheet" />
+  <link href="/css/select2.min.css" rel="stylesheet" />
+  <link href="/datepicker.css" rel="stylesheet" />
+@endpush
+@push('scripts')
+  <script type="text/javascript" src="/datepicker.js"></script>
+  <script type="text/javascript">
+    $('.docs-date').datepicker({
+    });
+  </script>
 @endpush
 @section('content')
 
 <center>
   <h2>Halaman User Contributor <small>Tambah Agenda</small></h2>
 </center>
-      
-     <form method="POST" action="{{url('admin/agenda/baru')}}" >
+      @if(Auth::user()->role == 1)
+        <form method="POST" action="{{url('contributor/agenda/baru')}}" >
+      @elseif(Auth::user()->role == 2)
+        <form method="POST" action="{{url('admin/agenda/baru')}}" >
+      @endif
           {{ csrf_field() }}
         
               <div class="form-group">
@@ -21,7 +32,7 @@
                 <input type="text" name="place"  class="form-control"  placeholder="Place">
               </div>
               <div class="form-group">
-                <input type="date" name="implementation"  class="form-control"  placeholder="Date">
+                <input type="text" name="implementation"  class="form-control docs-date"  placeholder="Date">
               </div>
             <center>
               

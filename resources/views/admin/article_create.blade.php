@@ -1,6 +1,6 @@
 @extends('layouts.admin.head')
 @push('style')
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" rel="stylesheet" />
+  <link href="/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
 
@@ -12,8 +12,14 @@
           {{ csrf_field() }}
             <center> 
              <div class="form-group">
-              <input type="submit" class="btn btn-success" value="post" name="aksi">
-              <input type="submit" class="btn btn-danger" value="draff" name="aksi">
+             <ul style="list-style: none;display: inline-flex;">
+               <li>
+                  <input type="submit" class="btn btn-success" value="kirim" name="aksi">
+               </li>
+               <li>
+                  <input type="submit" class="btn btn-danger" value="cancle" name="aksi">
+               </li>
+             </ul>
             </div>
             </center>
         <ul class="nav nav-tabs">
@@ -51,31 +57,13 @@
 
 @endsection
 @push('scripts')
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article-content').summernote({
-          height: 300,
-          onImageUpload: function(files, editor, welEditable) {
-                sendFile(files[0], editor, welEditable);
-            }
+          height: 300
         });
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "/picture",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(url) {
-                    editor.insertImage(welEditable, url);
-                }
-            });
-        }
     });
 
     $('#tag_list').select2({

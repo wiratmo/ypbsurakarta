@@ -1,12 +1,12 @@
 @extends('layouts.admin.head')
 @section('content')
 
-@if(Auth::user()->role === 1)
+@if(Auth::user()->role == 1)
 <center>
   <h2>Halaman Contributor <small>Create Category</small></h2>
 </center>
   <form method="POST" action="{{url('contributor/category/baru')}}" >
-@elseif(Auth::user()->role === 2)
+@elseif(Auth::user()->role == 2)
 <center>
 	<h2>Halaman Admin <small>Create Category</small></h2>
 </center>

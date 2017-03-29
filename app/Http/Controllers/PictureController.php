@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Picture;
 use App\Model\Picturecategory;
 use App\Model\School;
+use App\Http\Requests\PictureRequest;
 use Auth;
 /*
 * Storage for store file in server
@@ -21,6 +22,7 @@ class PictureController extends Controller
     public function index ($slug){
         $data['pictures'] = Picture::whereId($slug)->where('category',1)->where('accept', 1)->get()[0];
         $data['links'] = School::all();
+        $data['picturecategory'] = Picturecategory::all();
         return view('dashboard.picture_detail', $data);
         return dd($data);
     }
@@ -28,6 +30,7 @@ class PictureController extends Controller
     public function all(){
         $data['pictures'] = Picture::where('category',1)->where('accept', 1)->paginate(8);
         $data['picturecategories'] = Picturecategory::all();
+        $data['picturecategory'] = Picturecategory::all();
         $data['links'] = School::all();
         return view('dashboard.picture', $data);
         return dd($data);
@@ -43,6 +46,7 @@ class PictureController extends Controller
                             ->where('accept', 1)
                             ->paginate(8);
         $data['picturecategories'] = Picturecategory::all();
+        $data['picturecategory'] = Picturecategory::all();
         $data['links'] = School::all();
         return view('dashboard.picture', $data);
     }
@@ -75,7 +79,7 @@ class PictureController extends Controller
         return view('admin.picture_create', $data);
     }
 
-    public function storeContributor(Request $request){
+    public function storeContributor(PictureRequest $request){
         if($request->hasFile('picture')){
             $picture = new Picture;
             $picture->title = $request->title;
@@ -152,9 +156,9 @@ class PictureController extends Controller
         }
         $picture->url = $request->url_picture;
         $picture->save();
-        if(Auth::user()->role === 1){
+        if(Auth::user()->role == 1){
             return redirect('contributor/picture');
-        } else if (Auth::user()->role ===2){
+        } else if (Auth::user()->role ==2){
             if ($request->category == 2) {
                 return redirect('admin/slider');
             }

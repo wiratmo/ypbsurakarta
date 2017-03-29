@@ -3,16 +3,16 @@
 
 <center>
 	
-	@if($category === 1)
-		@if(Auth::user()->role === 1)
+	@if($category == 1)
+		@if(Auth::user()->role == 1)
 			<h4>Halaman Contributor <small>Manage Picture</small></h4>
 			<a href="{{url('/contributor/picture/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
-		@elseif(Auth::user()->role === 2)
+		@elseif(Auth::user()->role == 2)
 			<h4>Halaman Admin <small>Manage Picture</small></h4>
 			<a href="{{url('/admin/picture/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
 		@endif
-	@elseif($category === 2)
-		@if(Auth::user()->role === 2)
+	@elseif($category == 2)
+		@if(Auth::user()->role == 2)
 			<h4>Halaman Admin <small>Manage Slider</small></h4>
 			<a href="{{url('/admin/slider/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
 		@endif
@@ -43,13 +43,13 @@
 			@endif
 			<br>
 			<center>
-					@if(Auth::user()->role === 1)
+					@if(Auth::user()->role == 1)
 					<ul style="list-style: none;display: inline-flex;">
 	        			<li>
 							<a href="{{url('/contributor/picture/'.$p->id)}}"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a> 
 						</li>
 					</ul>
-		        	@elseif(Auth::user()->role === 2)
+		        	@elseif(Auth::user()->role == 2)
 		        	<ul style="list-style: none;display: inline-flex; padding: 0">
 		        		<li>
 		        			@if($category == 1)

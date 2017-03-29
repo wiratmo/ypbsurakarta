@@ -37,6 +37,15 @@
 		Route::get('/', 'AgendaController@indexContributor');
 		Route::get('/baru', 'AgendaController@create');
 		Route::post('/baru', 'AgendaController@store');
-		Route::get('{id}', 'AgendaController@editContributor');
-		Route::post('/{id}', 'AgendaController@updateContributor');
+		Route::get('{id}', 'AgendaController@edit');
+		Route::post('/{id}', 'AgendaController@update');
+		Route::delete('/delete', 'AgendaController@delete');
+	});
+	Route::group(['prefix'=>'picturecategory'], function(){
+		Route::get('/', 'PictureCategoryController@index');
+		Route::get('/baru', 'PictureCategoryController@create');
+		Route::post('/baru', 'PictureCategoryController@store');
+		Route::get('/{id}', 'PictureCategoryController@edit');
+		Route::post('/{id}', 'PictureCategoryController@update');
+		Route::delete('/delete', 'PictureCategoryController@delete');
 	});

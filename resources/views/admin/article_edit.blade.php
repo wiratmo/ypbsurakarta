@@ -1,6 +1,6 @@
 @extends('layouts.admin.head')
 @push('style')
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" rel="stylesheet" />
+  <link href="/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
 
@@ -8,20 +8,22 @@
   <h2>Halaman User Contributor <small>Edit Articles</small></h2>
 </center>
               
-@if(Auth::user()->role === 1)
+@if(Auth::user()->role == 1)
      <form method="POST" action="{{url('contributor/article/'.$id)}}" >
-    @elseif(Auth::user()->role === 2)
+    @elseif(Auth::user()->role == 2)
      <form method="POST" action="{{url('admin/article/'.$id)}}" >
 @endif
           {{ csrf_field() }}
         <input type="hidden" name="id" value="{{$id}}">
         <center> 
-             <div class="form-group">
-              <input type="submit" class="btn btn-success" value="post" name="aksi">
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-danger" value="draff" name="aksi">
-            </div>
+             <ul style="list-style: none;display: inline-flex;">
+               <li>
+                  <input type="submit" class="btn btn-success" value="kirim" name="aksi">
+               </li>
+               <li>
+                  <input type="submit" class="btn btn-danger" value="cancle" name="aksi">
+               </li>
+             </ul>
         </center>
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#article">Content</a></li>
@@ -64,33 +66,15 @@
       </form>
 
 @endsection
-@if(Auth::user()->role ===1)
+@if(Auth::user()->role ==1)
 @push('scripts')
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article-content').summernote({
-          height: 300,
-          onImageUpload: function(files, editor, welEditable) {
-                sendFile(files[0], editor, welEditable);
-            }
+          height: 300
         });
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "/picture",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(url) {
-                    editor.insertImage(welEditable, url);
-                }
-            });
-        }
     });
 
     $('#tag_list').select2({
@@ -133,33 +117,15 @@
 </script>
 @endpush
 
-@elseif(Auth::user()->role ===2)
+@elseif(Auth::user()->role ==2)
 @push('scripts')
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article-content').summernote({
           height: 300,
-          onImageUpload: function(files, editor, welEditable) {
-                sendFile(files[0], editor, welEditable);
-            }
         });
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "{{url('/picture')}}",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(url) {
-                    editor.insertImage(welEditable, url);
-                }
-            });
-        }
     });
 
     $('#tag_list').select2({

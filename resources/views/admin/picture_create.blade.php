@@ -1,16 +1,16 @@
 @extends('layouts.admin.head')
 @push('style')
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css" rel="stylesheet" />
+  <link href="/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
 <div class="row">
-@if(Auth::user()->id ==1)
+@if(Auth::user()->role ==1)
   <center>
   <h4>Halaman Contributor <small>Manage Picture</small></h4>
   <hr>
   </center>
   <form method="post" action="{{url('contributor/picture/baru')}}" enctype="multipart/form-data">
-@elseif(Auth::user()->id == 2)
+@elseif(Auth::user()->role == 2)
   @if($category == 1)
   <center>
   <h4>Halaman Admin <small>Manage Picture</small></h4>
@@ -68,9 +68,9 @@
 @endsection
 
 @push('scripts')
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
-  @if(Auth::user()->role === 1)
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/select2.min.js"></script>
+  @if(Auth::user()->role == 1)
     <script type="text/javascript">
     $('#categorypicture_tag').select2({
         placeholder: 'Enter a tag',
@@ -92,7 +92,7 @@
     });
 
     </script>
-  @elseif(Auth::user()->role === 2)
+  @elseif(Auth::user()->role == 2)
   <script type="text/javascript">
     $('#categorypicture_tag').select2({
         placeholder: 'Enter a tag',

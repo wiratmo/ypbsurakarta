@@ -3,8 +3,10 @@
 
 <center>
 	<h2>Halaman User Contributor <small>Manage Articles</small></h2>
-	@if(Auth::user()->role === 2)
+	@if(Auth::user()->role == 2)
 		<a href="{{url('/admin/agenda/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
+	@elseif(Auth::user()->role == 1)
+		<a href="{{url('/contributor/agenda/baru')}}"><button class="btn btn-sm btn-danger">Buat Baru</button></a>
 	@endif
 </center>
 <table id="example" class="display" cellspacing="0" width="100%">
@@ -25,13 +27,36 @@
 	        	<td>{{$a->implementation}}</td>
 	        	<td>{{$a->created_at}}</td>
 	        	<td>
-		        		<a href="{{url('/admin/agenda/'.$a->id)}}"><button class="btn btn-sm btn-warning"> Edit</button></a>
-		        		<form action="{{url('/admin/agenda/delete')}}" method="post">
-		        			{{ method_field('DELETE') }}
-	        				{{ csrf_field() }}
-		        			<input type="hidden" name="id" value="{{$a->id}}">
-		        			<input type="submit" value="hapus" class="btn btn-sm btn-danger">
-		        		</form>
+	        		@if(Auth::user()->role == 1)
+	        			<ul style="list-style: none; display: inline-flex;">
+		        			<li>
+			        			<a href="{{url('/contributor/agenda/'.$a->id)}}"><button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button></a>
+		        			</li>
+		        			<li>
+		        				<form action="{{url('/contributor/agenda/delete')}}" method="post">
+				        			{{ method_field('DELETE') }}
+			        				{{ csrf_field() }}
+				        			<input type="hidden" name="id" value="{{$a->id}}">
+				        			<button type="submit" value="hapus" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+				        		</form>	
+		        			</li>
+		        		</ul>
+	        		@elseif(Auth::user()->role == 2)
+	        		<ul style="list-style: none; display: inline-flex;">
+	        			<li>
+		        			<a href="{{url('/admin/agenda/'.$a->id)}}"><button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button></a>
+	        			</li>
+	        			<li>
+	        				<form action="{{url('/admin/agenda/delete')}}" method="post">
+			        			{{ method_field('DELETE') }}
+		        				{{ csrf_field() }}
+			        			<input type="hidden" name="id" value="{{$a->id}}">
+			        			<button type="submit" value="hapus" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+			        		</form>	
+	        			</li>
+	        		</ul>
+	        		@endif
+	        		
 	        	</td>
 	        </tr>
 	        @endforeach

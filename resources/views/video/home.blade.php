@@ -10,7 +10,7 @@
 		@foreach($videos as $v)
 	<div class="col-md-12">
 		<div class="video">
-			<a href="{{url(str_slug($v->name))}}">
+			<a href="{{url('/'.str_slug($v->name))}}">
 			<div class="col-md-6">
 				<img src="https://i.ytimg.com/vi/{{$v->youtube_id}}/sddefault.jpg" class="img img-responsive">
 			</div>

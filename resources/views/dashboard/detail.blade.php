@@ -7,18 +7,20 @@
 				<div class="article">
 					
 					<div class="row">
-						<center><h2><b>{{$a->title}}<b></h2></center>
+						<center><h3><b>{{$a->title}}<b></h3></center>
 							@foreach($profile as $p)
 							<img src="{{url('/storage/image'.$p->photo_profile)}}" class="img img-responsive img-circle img-profile">
 							@endforeach
-								<b>{{$a->user->name}}</b>
+								<span class="content-standar">{{$a->user->name}}</span>
 							<br>
-							<i class="fa fa-date"><b> {{$a->created_at->diffForHumans()}}</b></i> in <b> Tag : </b>
+							<i class="fa fa-date"><span class="content-standar"> {{$a->created_at->diffForHumans()}}</span></i>
 						@foreach($a->tags as $t)
-							<a href="{{url('/tag/'.$t->slug)}}"><button class="btn btn-xs btn-tag btn-warning">{{$t->name}}</button></a> 
+							<a href="{{url('/tag/'.$t->slug)}}" class="content-standar"><i class="fa fa-tags"></i>{{$t->name}}</a> 
 						@endforeach
 						<br>
-						<h4>{!!$a->content!!}</h4>
+						<div class="main-article">
+							{!!$a->content!!}
+						</div>
 					</div>
 				</div>
 				@endforeach

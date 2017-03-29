@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -241,6 +241,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Youtube'   => Madcoda\Youtube\Facades\Youtube::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
 
     ],
 
