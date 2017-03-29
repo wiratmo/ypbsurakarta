@@ -21,6 +21,15 @@ class CategoryController extends Controller
     								->where('categories.slug',$category)
                                     ->where('accept', 1)
     								->paginate(5);
+            $data['archived'] = Article::selectRaw('year(created_at) year, monthname(created_at) month, count(*) count')
+                                ->groupBy('year','month')
+                                ->orderBy('created_at','desc')
+                                ->get();
+        if($month = Request('month')){
+            $data['articles']->whereMonth('created_at', Carbon::parse($month)->month);
+        }if($year = Request('year')){
+            $data['articles']->whereYear('created_at', $year);
+        }
         $data['category'] = Category::take(10)->get();
         return view('dashboard.article', $data);
     	return dd($data);
